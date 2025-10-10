@@ -2,6 +2,10 @@
 # the commented lines are the default social media links supported by the template
 # the socials will be displayed in the order they are defined here
 
+# custom_social: # can be any name here other than the ones already defined above
+#   logo: /assets/img/Jish.png # can be png, svg, jpg
+#   title: JiSH's Homepage
+#   url: https://jasonjish.github.io/
 # academia_edu:  your organization and your username Ex. https://organization.academia.edu/UserName
 #  organization: princeton # your organization as appears in the subdomain
 #  username:  AlbertEinstein # your username
@@ -50,7 +54,3 @@ scholar_userid: Sg63d7MAAAAJ # your Google Scholar ID
 # x_username: # your X handle
 # youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
-# custom_social: # can be any name here other than the ones already defined above
-#   logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png # can be png, svg, jpg
-#   title: Custom Social
-#   url: https://www.alberteinstein.com/
