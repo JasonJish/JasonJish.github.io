@@ -2,96 +2,165 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Sanghoon Ji (지상훈 in Korean)
+    # - name: Date of Birth
+    #   value: 7th March 1994
     - name: Languages
-      value: English, German
+      value:  English(Fluent), Korean(Native)
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Master of Science (M.Sc.), Geography
+      institution: Kyung Hee University, Seoul, Korea
+      year: 2020 - 2023
+
+    - title: Bachelor of Science (B.Sc.), Geography & Tourism
+      institution: Kyung Hee University, Seoul, Korea
+      year: 2013 - 2020
+
+- title: Research Experience
+  type: time_table
+  contents:
+    - title: Research Assistant
+      institution: Department of Forest Sciences and Landscape Architecture, Wonkwang University, Iksan, Korea
+      year: 2025 – Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Supervised by Dr. Jang-Hwan Jo
+        - title: Project for Establishing the Master Plan for Mountain Village Revitalization
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+            - Utilizing the National Mountain Village Survey Data, Factor Analysis and Temporal Variability Analysis
+        - Development of a K-Glocal Forest Biodiversity Informatization and Management Model - Establishing a TNFD-Based ESG Response Framework Linking Local and Global Dimensions
 
-- title: Experience
-  type: time_table
-  contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Research Assistant
+      institution: Korea Research Institute for Local Administration, Wonju, Korea
+      year: 2025 – Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Supervised by Dr. Wondo Lee
+        - title: Analysis of the Daily Population Dynamics in Depopulating Areas
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+            - Analyzed National De Facto Population by integrating national statistics (Statistics Korea) with credit card and mobile big data
+        - title: Research on Enhancing the Production and Service Utilization of Regional Statistics
+          contents:
+            - Advised on strategies to improve the utilization of national big data by local governments
+
+    - title: Research Assistant
+      institution: Korea Forest Service, Seoul, Korea
+      year: 2023 – 2024
       description:
-        - Description 1.
-        - Description 2.
+        - Supervised by Dr. Jeonghee Lee
+        - title: Quality of Life–Based Framework for the Enhancement of Forest Ecosystem Services in Urban Areas
+          contents:
+            - Designed a GIS-based analytical framework to assess urban green space accessibility, incorporating mobile-based de facto population data and pedestrian-level network analysis in Seoul
+        - title: Establishment and Advancement of a Comprehensive Evaluation System for National Forest Trails
+          contents:
+            - Designed a framework for geospatial data collection and processing of Korea’s first national forest trail database, establishing classification criteria and a metadata schema from scratch
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Visiting Scholar
+      institution: Department of Geosciences, University of West Georgia, Georgia, United States
+      year: 2020 - 2022
       description:
+        - Supervised by Dr. Jeong Seong
+        - title: High-Potential Individuals Global Training Program 
+          contents:
+            - Funded by Institute for Information & communication Technology Planning & evaluation(IITP)
+        - title: Development of 3D Spatiotemporal Big Data Analysis Techniques Using Machine Learning
+          contents:
+            - Designed and implemented a 3D spatiotemporal analysis methodology by integrating Google Maps with remote sensing–based techniques
+            - Applied machine learning–based time-series analysis to detect and classify recurrent traffic congestion patterns
+        - title: Exploration of Trends in Geographic Big Data Research and Development of Integrated GIS Big Data Analysis
+          contents:
+            - Conducted keyword analysis using machine learning and social network analysis methods
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    - title: Research Assistant
+      institution: GIS Lab, Department of Geography, Kyung Hee University, Seoul, Korea
+      year: 2019 - 2025
+      description:
+        - Supervised by Dr. Chul-Sue Hwang
+        - title: LiDAR-Based CityGML Automation Framework - Building 3D Urban Models for Energy Simulations
+          contents:
+            - Designed a processing framework to transform high-resolution LiDAR data into CityGML-compliant 3D urban models
+            - Applied advanced algorithms to massive LiDAR point clouds for object detection (roof, wall, ground) and convert them into CityGML-compliant LoD3 geospatial models
+        - title: University Innovation Support Project – Digital Twin University Campus as a Digital Metaverse
+          contents:
+            - Developed and implemented a UAV-based spatial analysis curriculum(GEOG4062), covering drone operation, 3D modeling, and spatial data processing
+            - Funded by The Korea Ministry of Education, July 2022 - December 2024
 
-- title: Open Source Projects
+            - Applied machine learning–based time-series analysis to detect and classify recurrent traffic congestion patterns
+        - title: Policy Research and Analysis for Addressing Population Decline in the Region
+          contents:
+            - Developed an open-sourced analysis tool for multimodal network analysis
+            - Funded by The Korea Research Institute for Local Administration(KRILA), June - December 2022
+        - title: Evaluation of Potential Agricultural Productivity Through Time-Series Analysis of North Korean Farmland and Reclamation Areas
+          contents:
+            - Developed methodologies for classification of satellite imagery to generate land cover maps
+            - Funded by The Korean Geographical Society(KGS), May - November 2022
+        - title: Research on Spatial Information-Based Transportation Networks and Connectivity Systems in North Korean Region
+          contents:
+            - Built GIS-ready transportation networks by integrating satellite imagery and geospatial data 
+            - Funded by The Korean Geographical Society(KGS), May - November 2020
+
+        - title: Built GIS-ready transportation networks by integrating satellite imagery and geospatial data 
+          contents:
+            - Built GIS-ready transportation networks by integrating satellite imagery and geospatial data 
+            - Funded by The Korean Geographical Society(KGS), May - November 2020
+        - title: Spatial Data Collection for Estimating External Effects of Renewable Energy Generation Facilities
+          contents:
+            - Directed the automation of large-scale spatial big data processing and analysis as Project Manager
+            - Funded by The Korea Development Institute(KDI), April - September 2020
+        - title: Development of Web-GIS-based Antibiotic Resistance Map
+          contents:
+            - Designed and implemented a PostGIS-based spatial database and developed a web mapping service 
+            - Funded by The Korea Environmental Industry and Technology Institute (KEITI), September 2019 - December 2020
+        - title: National Atlas of Korea Publication Project
+          contents:
+            - Collected and processed spatial data required for map visualization
+            - Funded by The Korean Geographical Society(KGS), July 2019 - January 2020
+        - title: Spatial Data Collection for Analyzing the Location Choices of New Service Providers Based on Transportation Infrastructure
+          contents:
+            - Spatial data collection and processing
+            - Funded by The Korea Development Institute(KDI), June - November 2019
+        - title: Development of a Methodology that Converges Land Information and AI to Realize Social Values
+          contents:
+            - Designed and developed the living-lab webpage using HTML
+            - Funded by Korea Land and Geospatial Informatix Corporation(LX), June - November 2019
+            
+- title: Work Experience
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Lecturer
+      institution: Korean Geographical Society, Seoul, Korea
+      year: 2024
+      description:
+        - Geospatial Analysis and Applications Training Program, December, 2024
+        - Applications of Geographic Information Technologies, November, 2024
+ 
+    - title: Teaching/Graduate Assistant
+      institution: Kyung Hee University, Seoul, Korea
+      year: 2019 - 2025
+      description:
+        - title: University of West Georgia Geospatial Workshop, June – August 2023
+          contents:
+            - Supervised and guided undergraduate students participating in international workshops
+        - title: Applications of Geographic Information and Technology (GEOG4062), July 2022 – December 2024
+          contents:
+            - Spatial Big-data Competency Development Program, Funded by Spatial Information Industry Promotion Agency(SpaceN)
+            - Designed a practical course on combining aerial imagery captured by drones with SfM (Structure from Motion) algorithms to create a 3D model of the university campus
+            - Managed government-funded budgets for course implementation and introduced research equipment such as Pix4D, DJI Mavic 2 Pro, Meta Quest 2, and more.
+        - title: Fieldworks in Human Geography(GEOG205301), September – December 2021
+          contents:
+            - Supervised undergraduate students' individual assignment • Designed field trip-related plans
+        - title: Introduction to Geographic Information Systems and Science(GEOG201401), January 2020 – July 2021
+          contents:
+            - Created instructional videos for GIS practical courses
+            - Supervised undergraduate students' individual research and managed their research outcomes.
+        - Department of Geography, September 2021- March 2022
+        - Kyung Hee University Communication & Press, March - August 2020
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+    - title: Research Assistant/Intern
+      institution: Korea Transport Institute, Sejong, Korea
+      year: 2018
+      description:
+        - Origin-Destination (OD) Network Analysis Team, National Transport Big Data Center
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
 
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
