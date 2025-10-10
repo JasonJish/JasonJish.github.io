@@ -2,6 +2,10 @@
   - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
     url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
 
+# "sanghoon":
+#   - firstname: ["Sanghoon", 'Sanghoon Ji', "S. Ji", "Ji, S.", "Ji, Sanghoon"]
+#     url: https://scholar.google.com/citations?user=Sg63d7MAAAAJ
+
 "podolsky":
   - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
     url: https://en.wikipedia.org/wiki/Boris_Podolsky
