@@ -1,0 +1,7 @@
+# Text is stored with LF in the repository; pictures, documents and clips are never touched.
+* text=auto
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.mp4  binary

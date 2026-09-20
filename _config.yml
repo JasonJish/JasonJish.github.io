@@ -1,0 +1,14 @@
+# Jekyll needs this file to exist. There is nothing to edit here day to day —
+# all content lives at the top of index.html.
+
+title: Sanghoon Ji
+description: >-
+  Personal academic homepage of Sanghoon Ji — GIS and geomatics, spatial
+  accessibility, human mobility, spatial data mining and machine learning,
+  remote sensing and 3D reconstruction, forests and ecosystem services.
+
+# Set this to the published address before the first deploy.
+url: https://jasonjish.github.io
+baseurl: ""
+
+exclude: [Gemfile, Gemfile.lock, README.md, vendor, .github, .bundle]

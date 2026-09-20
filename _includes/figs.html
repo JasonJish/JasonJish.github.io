@@ -1,0 +1,52 @@
+{%- comment -%}
+  The sideways strip of pictures and short clips inside one entry's panel.
+  It shows exactly what index.html lists under that entry's `figures:`, in that order.
+    items – the entry's `figures:` list; each item is `file:` + optional `caption:` (or just a file name)
+    dir   – the entry's archive folder, e.g. /assets/journal/img/J7/
+    title – the entry's title, used as alt text for a picture without a caption
+    code  – the entry's code (J7, P11 …)
+  A picture is drawn from assets/auto/img/<code>/<name>.jpg when that fast copy exists (made by
+  _tools\auto.ps1) and from the original otherwise. A clip (.mp4, .webm) plays, silent and looping,
+  from assets/auto/img/<code>/<name>.mp4 when that light copy exists, with <name>.jpg as the still
+  shown until it starts. A click always opens the original.
+  A listed file that is not in the folder is left out, and named in the box the local preview shows.
+{%- endcomment -%}
+<div class="figs">
+  {%- for it in include.items -%}
+  {%- assign fname = it.file | default: it -%}
+  {%- assign cap = it.caption -%}
+  {%- assign fpath = include.dir | append: fname -%}
+  {%- assign sf = site.static_files | where: 'path', fpath | first -%}
+  {%- if sf == nil -%}
+    {%- capture dev_notes %}{{ dev_notes }}<li>{{ include.code }}: <b>{{ fname }}</b> — no such file in {{ include.dir }}</li>{% endcapture -%}
+    {%- continue -%}
+  {%- endif -%}
+  {%- assign ext = sf.extname | downcase -%}
+  {%- assign small = '/assets/auto/img/' | append: include.code | append: '/' | append: sf.basename | append: '.jpg' -%}
+  {%- assign small_n = site.static_files | where: 'path', small | size -%}
+  <figure class="fig">
+    {%- if ext == '.mp4' or ext == '.webm' -%}
+    {%- assign light = '/assets/auto/img/' | append: include.code | append: '/' | append: sf.basename | append: '.mp4' -%}
+    {%- assign light_n = site.static_files | where: 'path', light | size %}
+    <button type="button" class="fig-btn" data-kind="video" data-full="{{ sf.path | relative_url }}"
+            data-caption="{{ cap | default: '' | escape }}"
+            aria-label="Enlarge video{% if cap %}: {{ cap | escape }}{% endif %}">
+      <video src="{% if light_n > 0 %}{{ light | relative_url }}{% else %}{{ sf.path | relative_url }}{% endif %}"{% if small_n > 0 %} poster="{{ small | relative_url }}"{% endif %}
+             muted loop playsinline preload="none"
+             aria-label="{% if cap %}{{ cap | escape }}{% else %}Video from {{ include.title | escape | truncate: 90 }}{% endif %}"></video>
+      <span class="fig-zoom" aria-hidden="true">&#43;</span>
+    </button>
+    <button type="button" class="vid-toggle" aria-pressed="false" aria-label="Pause the clip">&#10074;&#10074;</button>
+    {%- else %}
+    <button type="button" class="fig-btn" data-full="{{ sf.path | relative_url }}"
+            data-caption="{{ cap | default: '' | escape }}"
+            aria-label="Enlarge figure{% if cap %}: {{ cap | escape }}{% endif %}">
+      <img src="{% if small_n > 0 %}{{ small | relative_url }}{% else %}{{ sf.path | relative_url }}{% endif %}" loading="lazy" decoding="async" draggable="false"
+           alt="{% if cap %}{{ cap | escape }}{% else %}Figure from {{ include.title | escape | truncate: 90 }}{% endif %}">
+      <span class="fig-zoom" aria-hidden="true">&#43;</span>
+    </button>
+    {%- endif -%}
+    {%- if cap %}<figcaption>{{ cap }}</figcaption>{% endif -%}
+  </figure>
+  {%- endfor -%}
+</div>

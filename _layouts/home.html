@@ -1,0 +1,625 @@
+{%- comment -%}
+  The page itself. Everything it shows comes from the content block of /index.html
+  (page.person, page.publications, …). Look: assets/site.css. Behaviour: assets/site.js.
+  Pieces used more than once: _includes/xbar.html (toggles, abstract, citation, link chips)
+  and _includes/figs.html (the strip of pictures and clips inside an entry).
+{%- endcomment -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.person.name }}</title>
+<meta name="description" content="{{ site.description }}">
+<meta name="author" content="{{ page.person.name }}">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{{ page.person.name }}">
+<meta property="og:description" content="{{ site.description }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{%- assign share = page.person.share_image | default: page.person.photo -%}
+{%- if share %}
+<meta property="og:image" content="{{ share | absolute_url }}">
+{%- endif %}
+<meta property="og:site_name" content="{{ site.title }}">
+<meta name="twitter:card" content="summary">
+{%- comment -%} Structured data: lets a search for the name connect this page with the profiles below. {%- endcomment -%}
+{%- assign same = "" | split: "" -%}
+{%- if page.person.scholar %}{% assign same = same | push: page.person.scholar %}{% endif -%}
+{%- if page.person.orcid %}{% assign same = same | push: page.person.orcid %}{% endif -%}
+{%- if page.person.researchgate %}{% assign same = same | push: page.person.researchgate %}{% endif -%}
+{%- if page.person.linkedin %}{% assign same = same | push: page.person.linkedin %}{% endif %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":{{ page.person.name | jsonify }},"alternateName":{{ page.person.name_ko | jsonify }},
+ "jobTitle":{{ page.person.role | jsonify }},"affiliation":{"@type":"Organization","name":{{ page.person.affiliation | jsonify }}},
+ "alumniOf":{"@type":"CollegeOrUniversity","name":"Kyung Hee University"},
+ "url":{{ page.url | absolute_url | jsonify }}{% if share %},"image":{{ share | absolute_url | jsonify }}{% endif %},"sameAs":{{ same | jsonify }}}
+</script>
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<!-- 한자 전용 서브셋: 池 相 訓 训 네 글자만. 한국어 폰트에 간체 训 이 없어
+     그 글자만 중국어 폰트로 튀는 것을 막는다. unicode-range 덕에 다른 글자는 영향 없음. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&text=%E6%B1%A0%E7%9B%B8%E8%AE%AD%E8%A8%93&display=swap">
+<link rel="icon" type="image/png" href="{{ '/assets/profile/Jish_icon.png' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/profile/Jish_icon.png' | relative_url }}">
+
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+</head>
+<body>
+
+{%- assign P = page.person -%}
+{%- assign ME = page.me -%}
+{%- comment -%} The picture archive: one folder per entry code, under the folder of its kind.
+    index.html names the files to show (figures:, preview:, gallery:); nothing is shown just for being in a folder. {%- endcomment -%}
+{%- assign dir_pub  = '/assets/journal/img/' -%}
+{%- assign dir_talk = '/assets/conference/img/' -%}
+{%- assign dir_proj = '/assets/project/img/' -%}
+{%- assign dir_auto = '/assets/auto/img/' -%}{%- comment -%} fast copies made by _tools\auto.ps1 {%- endcomment -%}
+{%- assign dev_notes = '' -%}{%- comment -%} problems in index.html, listed in a box in the local preview only {%- endcomment -%}
+
+{%- comment -%} Registry: code -> chip label / title / kind, used by the photo strip,
+    _includes/xbar.html and the project Outputs rows. {%- endcomment -%}
+{%- assign reg_codes = '' | split: '' -%}{%- assign reg_labels = '' | split: '' -%}{%- assign reg_titles = '' | split: '' -%}{%- assign reg_kinds = '' | split: '' -%}
+{%- for p in page.publications -%}{%- if p.key -%}
+  {%- capture lab -%}{{ p.kind_label | default: 'Paper' }} · {{ p.short | default: p.year }}{%- endcapture -%}
+  {%- assign reg_codes = reg_codes | push: p.key -%}{%- assign reg_labels = reg_labels | push: lab -%}{%- assign reg_titles = reg_titles | push: p.title -%}{%- assign reg_kinds = reg_kinds | push: 'pub' -%}
+{%- endif -%}{%- endfor -%}
+{%- for d in page.education -%}{%- if d.key -%}
+  {%- capture lab -%}{{ d.kind_label | default: 'Thesis' }} · {{ d.short }}{%- endcapture -%}
+  {%- assign reg_codes = reg_codes | push: d.key -%}{%- assign reg_labels = reg_labels | push: lab -%}{%- assign reg_titles = reg_titles | push: d.thesis -%}{%- assign reg_kinds = reg_kinds | push: 'pub' -%}
+{%- endif -%}{%- endfor -%}
+{%- for g in page.talks -%}{%- for t in g.items -%}{%- if t.key -%}
+  {%- capture lab -%}{{ t.kind_label | default: 'Talk' }} · {{ t.short | default: t.year }}{%- endcapture -%}
+  {%- assign reg_codes = reg_codes | push: t.key -%}{%- assign reg_labels = reg_labels | push: lab -%}{%- assign reg_titles = reg_titles | push: t.title -%}{%- assign reg_kinds = reg_kinds | push: 'talk' -%}
+{%- endif -%}{%- endfor -%}{%- endfor -%}
+{%- for org in page.experience -%}{%- for pr in org.projects -%}{%- if pr.key -%}
+  {%- capture lab -%}Project · {{ pr.short | default: pr.key }}{%- endcapture -%}
+  {%- assign reg_codes = reg_codes | push: pr.key -%}{%- assign reg_labels = reg_labels | push: lab -%}{%- assign reg_titles = reg_titles | push: pr.title -%}{%- assign reg_kinds = reg_kinds | push: 'proj' -%}
+{%- endif -%}{%- endfor -%}{%- endfor -%}
+
+{%- comment -%} Every figure listed in index.html as "<code>/<file>", with its caption: the photo strip
+    borrows these captions, and the check at the end of the page uses the list. {%- endcomment -%}
+{%- assign fig_ids = '' | split: '' -%}{%- assign fig_caps = '' | split: '' -%}
+{%- assign holders = page.publications | concat: page.education -%}
+{%- for g in page.talks %}{% assign holders = holders | concat: g.items %}{% endfor -%}
+{%- for org in page.experience %}{% assign holders = holders | concat: org.projects %}{% endfor -%}
+{%- for h in holders -%}{%- for f in h.figures -%}
+  {%- assign fn = f.file | default: f -%}{%- capture fid %}{{ h.key }}/{{ fn }}{% endcapture -%}
+  {%- assign fc = f.caption | default: '' -%}
+  {%- assign fig_ids = fig_ids | push: fid -%}{%- assign fig_caps = fig_caps | push: fc -%}
+{%- endfor -%}{%- endfor %}
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="page">
+
+  <aside class="rail">
+    <a class="mark" href="{{ '/' | relative_url }}"><b>{{ P.name }}</b><span>{{ P.name_ko }} · {{ P.name_hanja }}</span></a>
+    <nav class="railnav" id="railnav" aria-label="Sections">
+      <a href="#about">About</a><a href="#focus">Focus</a><a href="#publications">Publications</a>
+      <a href="#experience">Experience</a><a href="#education">Education</a><a href="#teaching">Teaching</a>
+      <a href="#honors">Honors</a><a href="#talks">Talks</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </nav>
+  </aside>
+
+  <main id="main">
+
+    <!-- ── hero ── -->
+    <header class="hero" id="top">
+      <div class="coord">
+        <span>{{ P.lat }}&deg; N, {{ P.lon }}&deg; E</span><span class="sep">&middot;</span><span>{{ P.city }}</span>
+        {%- if P.availability %}<span class="sep">&middot;</span><span><b>{{ P.availability }}</b></span>{% endif -%}
+      </div>
+      <div class="hero-top">
+        <div class="hero-lede">
+          <h1>{{ P.name }}</h1>
+          <p class="hanja">{{ P.name_ko }} &middot; {{ P.name_hanja }}{% if P.name_en %} &middot; {{ P.name_en }}{% endif %}</p>
+          <p class="role"><strong>{{ P.role }}</strong>, {{ P.affiliation }}<br>{{ P.degree_line }}</p>
+          <p class="thesis">{{ page.thesis }}</p>
+          <div class="cta">
+            <a class="btn primary" href="#publications">Publications</a>
+            {%- if P.cv_pdf %}<a class="btn" href="{{ P.cv_pdf | relative_url }}" target="_blank" rel="noreferrer">Curriculum Vitae</a>{% endif -%}
+            <button class="btn js-copy" type="button" data-copy="{{ P.email }}">Email</button>
+            {%- if P.scholar %}<a class="btn" href="{{ P.scholar }}" target="_blank" rel="noreferrer">Google Scholar</a>{% endif -%}
+            {%- if page.stats %}<div class="cta-stats">{% for s in page.stats %}<span><b>{{ s.value }}</b> {{ s.label }}</span>{% endfor %}</div>{% endif -%}
+          </div>
+        </div>
+        {%- if P.photo -%}
+        {%- assign photo_big = P.photo_large | default: P.photo %}
+        <button type="button" class="portrait portrait-btn" data-full="{{ photo_big | relative_url }}" data-caption=""
+                aria-label="Enlarge the photo">
+          <img src="{{ P.photo | relative_url }}" width="560" height="560"
+               alt="{{ P.name }}" fetchpriority="high" decoding="async">
+        </button>
+        {%- endif -%}
+      </div>
+    </header>
+
+    <!-- ── about ── -->
+    <section id="about">
+      <div class="sec-head"><span class="idx">01</span><h2>About</h2></div>
+      <div class="about-grid">
+        <div class="box">
+          <h3>Background</h3>
+          {%- for t in page.about %}<p>{{ t }}</p>{% endfor -%}
+        </div>
+        <div class="box now">
+          <h3>Now</h3>
+          {%- for r in page.currently %}
+          <div class="row"><span class="k">{{ r.key }}</span>
+            <span class="v">{{ r.value }}{% if r.note %}<small>{{ r.note }}</small>{% endif %}</span></div>
+          {% endfor -%}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── focus / filter ── -->
+    <section id="focus">
+      <div class="sec-head"><span class="idx">02</span><h2>Research Focus</h2></div>
+      <p class="sec-note">Select topics to filter the publications, projects, teaching and talks below.</p>
+      <div class="chips" id="chips" role="group" aria-label="Filter by research topic">
+        {%- for t in page.topics %}
+        <button class="chip" type="button" aria-pressed="false" data-topic="{{ t.id }}">{{ t.name }} <span class="n"></span></button>
+        {% endfor -%}
+      </div>
+      {%- comment -%} Photo strip: the archive files listed under `gallery:` in index.html, as "<code>/<file>".
+          The script shuffles the cards on every visit and hides those a topic filter leaves out. {%- endcomment -%}
+      {%- if page.gallery and page.gallery.size > 0 %}
+      <div class="gal">
+        <div class="gal-track" id="galTrack" role="group" aria-label="Pictures from the research — select one to jump to it">
+          {%- for g in page.gallery -%}
+          {%- assign gfile = g.file | default: g -%}
+          {%- assign gparts = gfile | split: '/' -%}{%- assign rc = gparts[0] -%}{%- assign gname = gparts[1] -%}
+          {%- assign ri = nil -%}{%- for c in reg_codes %}{% if c == rc %}{% assign ri = forloop.index0 %}{% endif %}{% endfor -%}
+          {%- if ri == nil %}{% capture dev_notes %}{{ dev_notes }}<li>gallery: <b>{{ gfile }}</b> — no entry has the code “{{ rc }}”</li>{% endcapture %}{% continue %}{% endif -%}
+          {%- assign gdir = dir_pub -%}{%- if reg_kinds[ri] == 'talk' %}{% assign gdir = dir_talk %}{% elsif reg_kinds[ri] == 'proj' %}{% assign gdir = dir_proj %}{% endif -%}
+          {%- assign gpath = gdir | append: rc | append: '/' | append: gname -%}
+          {%- assign gsf = site.static_files | where: 'path', gpath | first -%}
+          {%- if gsf == nil %}{% capture dev_notes %}{{ dev_notes }}<li>gallery: <b>{{ gfile }}</b> — no such file: {{ gpath }}</li>{% endcapture %}{% continue %}{% endif -%}
+          {%- assign gext = gsf.extname | downcase -%}
+          {%- comment -%} listed among that entry's figures? then a click lands on it, and its caption is the default {%- endcomment -%}
+          {%- assign fi = nil -%}{%- for id in fig_ids %}{% if id == gfile %}{% assign fi = forloop.index0 %}{% endif %}{% endfor -%}
+          {%- assign cap = g.caption -%}{%- if cap == nil and fi != nil %}{% assign cap = fig_caps[fi] %}{% endif -%}
+          {%- assign still = dir_auto | append: rc | append: '/' | append: gsf.basename | append: '.jpg' -%}
+          {%- assign has_still = site.static_files | where: 'path', still | size -%}
+          <a class="gal-card" href="#{{ rc }}"{% if fi != nil %} data-fig="{{ gpath | relative_url }}"{% endif %} title="{{ reg_titles[ri] | escape }}">
+            {%- if gext == '.mp4' or gext == '.webm' %}
+            {%- assign light = dir_auto | append: rc | append: '/' | append: gsf.basename | append: '.mp4' -%}
+            {%- assign has_light = site.static_files | where: 'path', light | size %}
+            <video src="{% if has_light > 0 %}{{ light | relative_url }}{% else %}{{ gpath | relative_url }}{% endif %}"{% if has_still > 0 %} poster="{{ still | relative_url }}"{% endif %} muted loop playsinline preload="none" aria-label="{{ cap | escape }}"></video>
+            {%- else %}
+            <img src="{% if has_still > 0 %}{{ still | relative_url }}{% else %}{{ gpath | relative_url }}{% endif %}" alt="{{ cap | escape }}" loading="lazy" decoding="async" draggable="false">
+            {%- endif %}
+            <span class="gal-cap"><span class="gal-code k-{{ reg_kinds[ri] }}">{{ reg_labels[ri] }}</span>{{ cap }}</span>
+          </a>
+          {%- endfor -%}
+        </div>
+        <button type="button" class="gal-nav prev" data-dir="-1" aria-label="Scroll pictures left">&#8249;</button>
+        <button type="button" class="gal-nav next" data-dir="1" aria-label="Scroll pictures right">&#8250;</button>
+      </div>
+      {%- endif %}
+    </section>
+
+    <!-- ── publications ── -->
+    <section id="publications" data-filterable>
+      <div class="sec-head"><span class="idx">03</span><h2>Selected Publications</h2>
+        <span class="idx" data-count></span></div>
+      {%- assign pubs_main  = page.publications | where_exp: 'p', 'p.others != true' -%}
+      {%- assign pubs_other = page.publications | where: 'others', true -%}
+      <div class="pubs">
+        {%- for pub in pubs_main -%}
+        {%- assign dir = dir_pub | append: pub.key | append: '/' -%}
+        {%- comment -%} The picture beside the title: `preview:`, or else the first picture (not a clip) under `figures:`. {%- endcomment -%}
+        {%- assign tname = pub.preview -%}
+        {%- unless tname -%}
+          {%- for f in pub.figures -%}{%- assign fn = f.file | default: f -%}{%- assign fe = fn | split: '.' | last | downcase -%}
+            {%- if tname == nil and fe != 'mp4' and fe != 'webm' %}{% assign tname = fn %}{% endif -%}
+          {%- endfor -%}
+        {%- endunless -%}
+        {%- assign thumb = nil -%}{%- assign tcap = nil -%}
+        {%- if tname -%}
+          {%- assign tpath = dir | append: tname -%}{%- assign thumb = site.static_files | where: 'path', tpath | first -%}
+          {%- capture tid %}{{ pub.key }}/{{ tname }}{% endcapture -%}
+          {%- for id in fig_ids %}{% if id == tid %}{% assign tcap = fig_caps[forloop.index0] %}{% endif %}{% endfor -%}
+          {%- if thumb == nil %}{% capture dev_notes %}{{ dev_notes }}<li>{{ pub.key }}: preview <b>{{ tname }}</b> — no such file in {{ dir }}</li>{% endcapture %}{% endif -%}
+        {%- endif -%}
+        <article class="pub{% if thumb %} has-thumb{% endif %}" id="{{ pub.key }}" data-topics="{{ pub.topics | join: ' ' }}">
+          <div class="yr">{{ pub.year }}{% if pub.kind %}<small>{{ pub.kind | upcase }}</small>{% endif %}</div>
+          <div class="body">
+            <h3>{{ pub.title }}</h3>
+            <p class="authors">{% for a in pub.authors %}{% if ME contains a %}<u>{{ a }}</u>{% else %}{{ a }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %} &amp; {% else %}, {% endif %}{% endunless %}{% endfor %}</p>
+            <p class="venue">
+              <span class="j">{{ pub.journal }}</span>
+              {%- if pub.detail %}<span>{{ pub.detail }}</span>{% endif -%}
+              {%- if pub.first_author %}<span class="tag">First author</span>{% endif -%}
+              {%- if pub.language %}<span>{{ pub.language }}</span>{% endif -%}
+              {%- if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noreferrer">{{ pub.doi_label | default: 'Link' }}</a>{% endif -%}
+            </p>
+            <p class="contrib">{{ pub.contribution }}</p>
+          </div>
+          {%- if thumb -%}
+          {%- comment -%} fast copy made by _tools\auto.ps1, if there is one {%- endcomment -%}
+          {%- assign tsmall = dir_auto | append: pub.key | append: '/' | append: thumb.basename | append: '.jpg' -%}
+          {%- assign tsmall_n = site.static_files | where: 'path', tsmall | size -%}
+          <button type="button" class="pub-thumb" data-open-figs
+                  aria-label="Show figures for this publication">
+            <img src="{% if tsmall_n > 0 %}{{ tsmall | relative_url }}{% else %}{{ thumb.path | relative_url }}{% endif %}" loading="lazy" decoding="async"
+                 draggable="false"
+                 alt="{% if tcap and tcap != '' %}{{ tcap | escape }}{% else %}{{ pub.title | escape | truncate: 80 }}{% endif %}">
+          </button>
+          {%- endif -%}
+          <div class="xrow">
+            {%- capture ml -%}Method &amp; contribution{% if pub.figures.size > 0 or pub.tables %} · figures{% endif %}{%- endcapture -%}
+            {%- include xbar.html item=pub kind='pub' more=ml -%}
+            <div class="xp" id="{{ pub.key }}-more" hidden>
+              <div class="more-body">
+                {%- if pub.method %}<p>{{ pub.method }}</p>{% endif -%}
+                {%- if pub.terms %}<div class="terms">{% for t in pub.terms %}<span class="term">{{ t }}</span>{% endfor %}</div>{% endif -%}
+
+                {%- if pub.figures.size > 0 -%}
+                {%- include figs.html items=pub.figures dir=dir title=pub.title code=pub.key -%}
+                {%- endif -%}
+
+                {%- for tb in pub.tables -%}
+                <div class="tbl-wrap">
+                  {%- if tb.caption %}<p class="tbl-cap">{{ tb.caption }}</p>{% endif -%}
+                  <div class="tbl-scroll"><table class="tbl">
+                    <thead><tr>{% for h in tb.head %}<th scope="col">{{ h }}</th>{% endfor %}</tr></thead>
+                    <tbody>{% for r in tb.rows %}<tr>{% for c in r %}<td>{{ c }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+                  </table></div>
+                </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+        </article>
+        {%- endfor -%}
+      </div>
+
+      {%- if pubs_other.size > 0 -%}
+      <details class="others">
+        <summary>Other publications &mdash; co-authored ({{ pubs_other.size }})</summary>
+        <div class="pubrows">
+          {%- for pub in pubs_other -%}
+          {%- assign odir = dir_pub | append: pub.key | append: '/' -%}
+          {%- comment -%} A compact row shows a small picture only when the entry asks for one with `preview:`. {%- endcomment -%}
+          {%- assign othumb = nil -%}
+          {%- if pub.preview -%}
+            {%- assign otpath = odir | append: pub.preview -%}{%- assign othumb = site.static_files | where: 'path', otpath | first -%}
+            {%- if othumb == nil %}{% capture dev_notes %}{{ dev_notes }}<li>{{ pub.key }}: preview <b>{{ pub.preview }}</b> — no such file in {{ odir }}</li>{% endcapture %}{% endif -%}
+          {%- endif -%}
+          <div class="pubrow{% if othumb %} has-thumb{% endif %}" id="{{ pub.key }}" data-topics="{{ pub.topics | join: ' ' }}">
+            <div class="yr">{{ pub.year }}</div>
+            <div>
+              <h3>{{ pub.title }}</h3>
+              <p class="who">{% for a in pub.authors %}{% if ME contains a %}<u>{{ a }}</u>{% else %}{{ a }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %} &amp; {% else %}, {% endif %}{% endunless %}{% endfor %}</p>
+              <p class="where">
+                <span class="j">{{ pub.journal }}</span>
+                {%- if pub.detail %} <span>{{ pub.detail }}</span>{% endif -%}
+                {%- if pub.language %} <span>&middot; {{ pub.language }}</span>{% endif -%}
+                {%- if pub.note %} <span class="tag">{{ pub.note }}</span>{% endif -%}
+                {%- if pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noreferrer">{{ pub.doi_label | default: 'Link' }}</a>{% endif -%}
+              </p>
+              {%- assign ml = '' -%}{%- if pub.figures.size > 0 %}{% capture ml %}Figures ({{ pub.figures.size }}){% endcapture %}{% endif -%}
+              {%- include xbar.html item=pub kind='pub' more=ml -%}
+              {%- if pub.figures.size > 0 -%}
+              <div class="xp" id="{{ pub.key }}-more" hidden>
+                <div class="more-body">
+                  {%- include figs.html items=pub.figures dir=odir title=pub.title code=pub.key -%}
+                </div>
+              </div>
+              {%- endif -%}
+            </div>
+            {%- if othumb -%}
+            {%- assign osmall = dir_auto | append: pub.key | append: '/' | append: othumb.basename | append: '.jpg' -%}
+            {%- assign osmall_n = site.static_files | where: 'path', osmall | size -%}
+            <button type="button" class="pub-thumb" data-open-figs aria-label="Show figures for this publication">
+              <img src="{% if osmall_n > 0 %}{{ osmall | relative_url }}{% else %}{{ othumb.path | relative_url }}{% endif %}" loading="lazy" decoding="async"
+                   draggable="false" alt="{{ pub.title | escape | truncate: 80 }}">
+            </button>
+            {%- endif -%}
+          </div>
+          {%- endfor -%}
+        </div>
+      </details>
+      {%- endif -%}
+
+      <p class="noresult">No publication matches the selected topics.</p>
+    </section>
+
+    <!-- ── experience ── -->
+    <section id="experience" data-filterable>
+      <div class="sec-head"><span class="idx">04</span><h2>Research Experience</h2>
+        <span class="idx" data-count></span></div>
+
+      {%- assign seen_proj = '' -%}
+      {%- for org in page.experience -%}
+      <div class="org">
+        <div class="org-head">
+          <h3>{{ org.org }}{% if org.where %} <span class="where">&middot; {{ org.where }}</span>{% endif %}</h3>
+          <span class="span">{{ org.span }}</span>
+        </div>
+        {%- if org.role %}<p class="org-role">{{ org.role }}{% if org.advisor %} &mdash; <em>Advisor: {% if org.advisor_url %}<a href="{{ org.advisor_url }}" target="_blank" rel="noreferrer">{{ org.advisor }}</a>{% else %}{{ org.advisor }}{% endif %}</em>{% endif %}</p>{% endif -%}
+        {%- assign n_out = 0 -%}{%- for pr in org.projects %}{% assign n_out = n_out | plus: pr.outputs.size %}{% endfor -%}
+        <div class="xbar org-bar"><button type="button" class="xt org-toggle" aria-expanded="false" aria-controls="org-{{ forloop.index }}">{{ org.projects.size }} project{% if org.projects.size != 1 %}s{% endif %}{% if n_out > 0 %} · {{ n_out }} output{% if n_out != 1 %}s{% endif %}{% endif %}</button></div>
+        <div class="org-body" id="org-{{ forloop.index }}" hidden>
+
+        {%- for pr in org.projects -%}
+        {%- assign dir = dir_proj | append: pr.key | append: '/' -%}
+
+        {%- comment -%} Two cards may share a code (P13): the second gets "-2" so ids stay unique. {%- endcomment -%}
+        {%- assign pid = pr.key -%}
+        {%- capture mark %}|{{ pr.key }}|{% endcapture -%}
+        {%- if seen_proj contains mark %}{% assign pid = pr.key | append: '-2' %}{% endif -%}
+        {%- assign seen_proj = seen_proj | append: mark -%}
+        <div class="proj" id="{{ pid }}" data-topics="{{ pr.topics | join: ' ' }}">
+          <h4>{{ pr.title }}</h4>
+          <p class="meta"><span>{{ pr.period }}</span>{% if pr.funder %}<span class="fund">{{ pr.funder }}</span>{% endif %}</p>
+          {%- if pr.outputs -%}
+          <div class="outs"><span class="outs-k">Outputs</span>
+            {%- for c in pr.outputs -%}
+              {%- assign ri = nil -%}
+              {%- for rc in reg_codes %}{% if rc == c %}{% assign ri = forloop.index0 %}{% endif %}{% endfor -%}
+              {%- if ri != nil %}<a class="xl k-{{ reg_kinds[ri] }}" href="#{{ c }}" title="{{ reg_titles[ri] | escape }}">{{ reg_labels[ri] }}</a>{% endif -%}
+            {%- endfor -%}
+          </div>
+          {%- endif -%}
+          {%- if pr.bullets or pr.terms or pr.figures.size > 0 or pr.tables -%}
+          <div class="xbar"><button type="button" class="xt" aria-expanded="false" aria-controls="{{ pid }}-more">Details{% if pr.figures.size > 0 %} · figures{% endif %}</button></div>
+          <div class="xp" id="{{ pid }}-more" hidden>
+          {%- if pr.bullets %}<ul>{% for b in pr.bullets %}<li>{{ b }}</li>{% endfor %}</ul>{% endif -%}
+          {%- if pr.terms %}<div class="terms">{% for t in pr.terms %}<span class="term">{{ t }}</span>{% endfor %}</div>{% endif -%}
+
+          {%- if pr.figures.size > 0 or pr.tables -%}
+            <div class="more-body">
+              {%- if pr.figures.size > 0 -%}
+              {%- include figs.html items=pr.figures dir=dir title=pr.title code=pr.key -%}
+              {%- endif -%}
+              {%- for tb in pr.tables -%}
+              <div class="tbl-wrap">
+                {%- if tb.caption %}<p class="tbl-cap">{{ tb.caption }}</p>{% endif -%}
+                <div class="tbl-scroll"><table class="tbl">
+                  <thead><tr>{% for h in tb.head %}<th scope="col">{{ h }}</th>{% endfor %}</tr></thead>
+                  <tbody>{% for r in tb.rows %}<tr>{% for c in r %}<td>{{ c }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+                </table></div>
+              </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          </div>
+          {%- endif -%}
+        </div>
+        {%- endfor -%}
+        </div>
+      </div>
+      {%- endfor -%}
+      <p class="noresult">No research project matches the selected topics.</p>
+    </section>
+
+    <!-- ── education ── -->
+    <section id="education">
+      <div class="sec-head"><span class="idx">05</span><h2>Education</h2></div>
+      <div class="edu">
+        {%- for d in page.education -%}
+        <div class="deg"{% if d.key %} id="{{ d.key }}"{% endif %}>
+          <div class="when">{{ d.when }}</div>
+          <div>
+            <h3>{{ d.degree }}{% if d.degree_note %} <span class="degnote">({{ d.degree_note }})</span>{% endif %}</h3>
+            <p class="inst"><b>{{ d.institution }}</b>, {{ d.where }}{% if d.extra %} &middot; {{ d.extra }}{% endif %}{% if d.advisor %} &middot; Advisor: {% if d.advisor_url %}<a class="adv" href="{{ d.advisor_url }}" target="_blank" rel="noreferrer">{{ d.advisor }}</a>{% else %}{{ d.advisor }}{% endif %}{% endif %}</p>
+            {%- if d.thesis %}<p class="thesis-t"><span>Thesis</span>{{ d.thesis }}{% if d.thesis_language %} <i>({{ d.thesis_language }})</i>{% endif %}</p>{% endif -%}
+            {%- if d.thesis_detail %}<p class="thesis-d">{{ d.thesis_detail }}</p>{% endif -%}
+            {%- assign ddir = dir_pub | append: d.key | append: '/' -%}
+            {%- assign ml = '' -%}{%- if d.figures.size > 0 %}{% capture ml %}Figures ({{ d.figures.size }}){% endcapture %}{% endif -%}
+            {%- if d.key %}{% include xbar.html item=d kind='thesis' more=ml %}{% endif -%}
+            {%- if d.figures.size > 0 -%}
+            <div class="xp" id="{{ d.key }}-more" hidden>
+              <div class="more-body">
+                {%- include figs.html items=d.figures dir=ddir title=d.thesis code=d.key -%}
+              </div>
+            </div>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <!-- ── teaching ── -->
+    {%- comment -%} "optional": rows with `topics:` take part in the filter, and the whole section steps aside when none of them match {%- endcomment -%}
+    <section id="teaching" data-filterable="optional">
+      <div class="sec-head"><span class="idx">06</span><h2>Teaching &amp; Mentoring</h2>
+        <span class="idx" data-count></span></div>
+      {%- for org in page.teaching -%}
+      <div class="org">
+        <div class="org-head">
+          <h3>{{ org.org }}{% if org.where %} <span class="where">&middot; {{ org.where }}</span>{% endif %}</h3>
+          <span class="span">{{ org.span }}</span>
+        </div>
+        {%- if org.role %}<p class="org-role">{{ org.role }}</p>{% endif -%}
+        <div class="xbar org-bar"><button type="button" class="xt org-toggle" aria-expanded="false" aria-controls="tch-{{ forloop.index }}">{{ org.items.size }} {{ org.unit | default: 'items' }}</button></div>
+        <div class="rows org-body" id="tch-{{ forloop.index }}" hidden>
+          {%- for it in org.items -%}
+          <div class="row2"{% if it.topics %} data-topics="{{ it.topics | join: ' ' }}"{% endif %}>
+            <div class="when">{{ it.when }}</div>
+            <div><h4>{{ it.title }}{% if it.code %} <span class="code">{{ it.code }}</span>{% endif %}</h4>
+              <p>{{ it.note }}</p></div>
+          </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      {%- endfor -%}
+    </section>
+
+    <!-- ── honors ── -->
+    <section id="honors">
+      <div class="sec-head"><span class="idx">07</span><h2>Honors, Funding &amp; Service</h2></div>
+      {%- for g in page.honors -%}
+      <div class="org">
+        <div class="org-head"><h3>{{ g.group }}</h3></div>
+        <div class="rows rows-pad">
+          {%- for it in g.items -%}
+          <div class="row2">
+            <div class="when">{{ it.when }}{% if it.amount %}<br><span class="amt">{{ it.amount }}</span>{% endif %}</div>
+            <div><h4>{{ it.title }}</h4><p>{{ it.note }}</p></div>
+          </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      {%- endfor -%}
+    </section>
+
+    <!-- ── talks ── -->
+    <section id="talks" data-filterable>
+      <div class="sec-head"><span class="idx">08</span><h2>Conference Presentations</h2>
+        <span class="idx" data-count></span></div>
+      {%- assign files_by_name = site.static_files | sort: 'name' -%}
+      {%- for g in page.talks -%}
+      {%- capture talkrows -%}
+        {%- for t in g.items -%}
+        {%- assign tdir = dir_talk | append: t.key | append: '/' -%}
+        {%- comment -%} Poster picture made by _tools\auto.ps1 (in assets/auto/poster/), plus the newest poster PDF for this code
+            (files are read in name order, so …_POSTER_V2.pdf wins over …_POSTER.pdf). {%- endcomment -%}
+        {%- assign psmall = nil -%}{%- assign ppdf = nil -%}
+        {%- if t.key -%}
+          {%- assign pthumb = '/assets/auto/poster/' | append: t.key | append: '_s.jpg' -%}
+          {%- assign psmall = site.static_files | where: 'path', pthumb | first -%}
+          {%- if psmall -%}
+            {%- assign pfx = t.key | append: '_' -%}{%- assign pl = pfx | size -%}
+            {%- for f in files_by_name -%}
+              {%- if f.extname == '.pdf' and f.path contains '/assets/conference/' and f.name contains '_POSTER' -%}
+                {%- assign head = f.name | slice: 0, pl -%}{%- if head == pfx %}{% assign ppdf = f.path %}{% endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+        <div class="talk{% if psmall %} has-poster{% endif %}"{% if t.key %} id="{{ t.key }}"{% endif %} data-topics="{{ t.topics | join: ' ' }}">
+          <div class="yr">{{ t.year }}</div>
+          <div>
+            <p><span class="who">{% for a in t.authors %}{% if ME contains a %}<u>{{ a }}</u>{% else %}{{ a }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %} &amp; {% else %}, {% endif %}{% endunless %}{% endfor %}</span>
+              {%- assign tl = t.title | slice: -1 %}
+              <b>{{ t.title }}{% unless tl == '?' or tl == '.' or tl == '!' %}.{% endunless %}</b><span class="at">{{ t.venue }}</span></p>
+            {%- assign ml = '' -%}{%- if t.figures.size > 0 %}{% capture ml %}Figures ({{ t.figures.size }}){% endcapture %}{% endif -%}
+            {%- if t.key %}{% include xbar.html item=t kind='talk' more=ml %}{% endif -%}
+            {%- if t.figures.size > 0 -%}
+            <div class="xp" id="{{ t.key }}-more" hidden>
+              <div class="more-body">
+                {%- include figs.html items=t.figures dir=tdir title=t.title code=t.key -%}
+              </div>
+            </div>
+            {%- endif -%}
+          </div>
+          {%- if psmall -%}
+          {%- assign pbig = '/assets/auto/poster/' | append: t.key | append: '.jpg' -%}
+          <button type="button" class="fig-btn poster-btn" data-full="{{ pbig | relative_url }}"
+                  data-caption="Poster — {{ t.title | escape }}"{% if ppdf %} data-pdf="{{ ppdf | relative_url }}"{% endif %}
+                  aria-label="Enlarge poster: {{ t.title | escape }}">
+            <img src="{{ psmall.path | relative_url }}" loading="lazy" decoding="async" draggable="false" alt="Poster: {{ t.title | escape }}">
+            <span class="poster-tag">Poster</span>
+          </button>
+          {%- endif -%}
+        </div>
+        {%- endfor -%}
+      {%- endcapture -%}
+
+      {%- if g.collapsed -%}
+      <details class="others">
+        <summary>{{ g.group }}{% if g.note %} &mdash; {{ g.note }}{% endif %} ({{ g.items.size }})</summary>
+        <div class="talkgroup">{{ talkrows }}</div>
+      </details>
+      {%- else -%}
+      <div class="talkgroup">
+        <h3>{{ g.group }}</h3>
+        {{ talkrows }}
+      </div>
+      {%- endif -%}
+      {%- endfor -%}
+      <p class="noresult">No presentation matches the selected topics.</p>
+    </section>
+
+    <!-- ── skills ── -->
+    <section id="skills">
+      <div class="sec-head"><span class="idx">09</span><h2>Skills &amp; Tools</h2></div>
+      <div class="skills">
+        {%- for g in page.skills -%}
+        <div class="skill"><h3>{{ g.group }}</h3>
+          <ul>{% for i in g.items %}<li>{{ i }}</li>{% endfor %}</ul></div>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <!-- ── contact ── -->
+    <section id="contact">
+      <div class="sec-head"><span class="idx">10</span><h2>Contact</h2></div>
+      <div class="box">
+        <div class="cta cta-tight">
+          <button class="btn primary js-copy" type="button" data-copy="{{ P.email }}">{{ P.email }}</button>
+          {%- if P.cv_pdf %}<a class="btn" href="{{ P.cv_pdf | relative_url }}" target="_blank" rel="noreferrer">Full CV (PDF)</a>{% endif -%}
+          {%- if P.show_phone %}<a class="btn" href="tel:{{ P.phone }}">{{ P.phone }}</a>{% endif -%}
+        </div>
+
+        <div class="social">
+          {%- if P.scholar -%}
+          <a href="{{ P.scholar }}" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 8l11 6 9-4.9V17h2V8L12 2z"/><path d="M5.5 11.9V16c0 2.2 2.9 4 6.5 4s6.5-1.8 6.5-4v-4.1l-6.5 3.6-6.5-3.6z"/></svg>
+            <span>Google Scholar</span></a>
+          {%- endif -%}
+          {%- if P.researchgate -%}
+          <a href="{{ P.researchgate }}" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></svg>
+            <span>ResearchGate</span></a>
+          {%- endif -%}
+          {%- if P.linkedin -%}
+          <a href="{{ P.linkedin }}" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-2-3.07-2 0-2.3 1.46-2.3 2.97V21h-4V9z"/></svg>
+            <span>LinkedIn</span></a>
+          {%- endif -%}
+          {%- if P.orcid -%}
+          <a href="{{ P.orcid }}" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.9"/><text x="12" y="15.9" text-anchor="middle" font-size="9.5" font-weight="700" font-family="Archivo, sans-serif" fill="currentColor">iD</text></svg>
+            <span>ORCID</span></a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="sig"><span>{{ P.name }} &middot; {{ P.name_ko }}</span>
+        <span>Last updated {{ page.footer_updated }}</span></div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="statusbar" id="statusbar" hidden>
+  <span class="grow" role="status">Filtering by <b id="statusTopics"></b> — showing <b id="statusCount"></b></span>
+  <button type="button" id="clearFilter">Show everything</button>
+</div>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Figure viewer">
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close figure viewer">&times;</button>
+  <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Previous figure">&#8249;</button>
+  <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Next figure">&#8250;</button>
+  <figure class="lb-stage"><img id="lbImg" alt="" draggable="false"><video id="lbVid" controls muted loop playsinline hidden controlslist="nodownload noplaybackrate" disablepictureinpicture></video><figcaption id="lbCap"></figcaption>
+    <a class="lb-pdf" id="lbPdf" href="#" target="_blank" rel="noreferrer" hidden>Open the full PDF &#8599;</a></figure>
+  <p class="lb-count" id="lbCount"></p>
+</div>
+
+{%- if jekyll.environment == 'development' -%}
+  {%- assign used = fig_ids -%}
+  {%- for g in page.gallery %}{% assign gf = g.file | default: g %}{% assign used = used | push: gf %}{% endfor -%}
+  {%- for p in page.publications %}{% if p.preview %}{% capture pv %}{{ p.key }}/{{ p.preview }}{% endcapture %}{% assign used = used | push: pv %}{% endif %}{% endfor -%}
+  {%- for sf in site.static_files -%}
+    {%- unless sf.path contains '/img/' %}{% continue %}{% endunless -%}
+    {%- if sf.path contains dir_auto %}{% continue %}{% endif -%}
+    {%- assign sp = sf.path | split: '/' -%}{%- assign si = sp.size | minus: 2 -%}
+    {%- capture sid %}{{ sp[si] }}/{{ sf.name }}{% endcapture -%}
+    {%- unless used contains sid %}{% capture dev_notes %}{{ dev_notes }}<li>in the folder but shown nowhere: <b>{{ sid }}</b> <span>({{ sf.path }})</span></li>{% endcapture %}{% endunless -%}
+  {%- endfor -%}
+  {%- if dev_notes != '' %}
+<details class="devbox" open><summary>index.html — worth a look</summary><ul>{{ dev_notes }}</ul><p>This box appears in the local preview only, never on the published site.</p></details>
+  {%- endif -%}
+{%- endif %}
+<script src="{{ '/assets/site.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>

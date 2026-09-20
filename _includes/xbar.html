@@ -1,0 +1,72 @@
+{%- comment -%}
+  Toggle bar for one publication, talk or thesis:  + Abstract · + <more> · + Cite
+  followed by link chips to related outputs and projects, then the abstract and
+  citation panels. The caller renders its own "<id>-more" panel right after this.
+    item  – the entry (needs key; may have abstract, abstract_note, abstract_src,
+            related, cite, authors, year, title, journal/detail/url or venue)
+    kind  – pub | talk | thesis
+    more  – label for the caller's extra panel, empty for none
+  Uses the registry built at the top of <main> (reg_codes, reg_labels, reg_titles, reg_kinds).
+{%- endcomment -%}
+{%- assign it = include.item -%}
+{%- assign k  = it.key -%}
+{%- capture chips -%}
+  {%- for c in it.related -%}
+    {%- assign ri = nil -%}
+    {%- for rc in reg_codes %}{% if rc == c %}{% assign ri = forloop.index0 %}{% endif %}{% endfor -%}
+    {%- if ri != nil %}<a class="xl k-{{ reg_kinds[ri] }}" href="#{{ c }}" title="{{ reg_titles[ri] | escape }}">{{ reg_labels[ri] }}</a>{% endif -%}
+  {%- endfor -%}
+  {%- if include.kind != 'talk' -%}
+    {%- for g in page.talks -%}{%- for t in g.items -%}{%- if t.related contains k -%}
+    {%- assign ri = nil -%}
+    {%- for rc in reg_codes %}{% if rc == t.key %}{% assign ri = forloop.index0 %}{% endif %}{% endfor -%}
+    {%- if ri != nil %}<a class="xl k-talk" href="#{{ t.key }}" title="{{ t.title | escape }}">{{ reg_labels[ri] }}</a>{% endif -%}
+    {%- endif -%}{%- endfor -%}{%- endfor -%}
+  {%- endif -%}
+  {%- for org in page.experience -%}{%- for pr in org.projects -%}{%- if pr.outputs contains k -%}
+    <a class="xl k-proj" href="#{{ pr.key }}" title="{{ pr.title | escape }}">Project · {{ pr.short }}</a>
+  {%- endif -%}{%- endfor -%}{%- endfor -%}
+{%- endcapture -%}
+
+{%- if it.cite -%}
+  {%- assign cite_html  = it.cite -%}
+  {%- assign cite_plain = it.cite -%}
+{%- else -%}
+  {%- capture au -%}
+    {%- for a in it.authors -%}
+      {%- assign parts = a | split: ' ' -%}{%- assign fam = parts | last -%}{%- assign given = parts | pop -%}
+      {{ fam }},{% for gname in given %} {% assign hy = gname | split: '-' %}{% for h in hy %}{{ h | slice: 0 }}.{% unless forloop.last %}-{% endunless %}{% endfor %}{% endfor %}
+      {%- comment -%} "A, B & C", as in the CV: no comma before the ampersand {%- endcomment -%}
+      {%- unless forloop.last -%}{%- if forloop.rindex == 2 %} & {% else -%}, {% endif -%}{%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- assign tlast = it.title | slice: -1 -%}
+  {%- capture ttl -%}{{ it.title }}{% unless tlast == '?' or tlast == '.' %}.{% endunless %}{%- endcapture -%}
+  {%- if include.kind == 'pub' -%}
+    {%- capture cite_html -%}{{ au }} ({{ it.year }}). {{ ttl }} <i>{{ it.journal }}</i>{% if it.detail %}, {{ it.detail }}{% endif %}.{% if it.url %} <a href="{{ it.url }}" target="_blank" rel="noreferrer">{{ it.url }}</a>{% endif %}{%- endcapture -%}
+    {%- capture cite_plain -%}{{ au }} ({{ it.year }}). {{ ttl }} {{ it.journal }}{% if it.detail %}, {{ it.detail }}{% endif %}.{% if it.url %} {{ it.url }}{% endif %}{%- endcapture -%}
+  {%- else -%}
+    {%- assign v = it.venue | replace: ' · Accepted', ' (accepted)' | replace: ' · ', ', ' -%}
+    {%- capture cite_html -%}{{ au }} ({{ it.year }}). {{ ttl }} {{ v }}.{%- endcapture -%}
+    {%- assign cite_plain = cite_html -%}
+  {%- endif -%}
+{%- endif -%}
+
+<div class="xbar">
+  {%- if it.abstract %}<button type="button" class="xt" aria-expanded="false" aria-controls="{{ k }}-abs">Abstract</button>{% endif -%}
+  {%- assign more = include.more | default: '' | strip -%}
+  {%- if more != '' %}<button type="button" class="xt" aria-expanded="false" aria-controls="{{ k }}-more">{{ more }}</button>{% endif -%}
+  <button type="button" class="xt" aria-expanded="false" aria-controls="{{ k }}-cite">Cite</button>
+  {%- assign chips = chips | strip -%}
+  {%- if chips != '' %}<span class="xls">{{ chips }}</span>{% endif -%}
+</div>
+{%- if it.abstract -%}
+<div class="xp" id="{{ k }}-abs" hidden>
+  <p class="xp-note{% if it.abstract_src %} {{ it.abstract_src }}{% endif %}">{{ it.abstract_note | default: 'Official abstract' }}</p>
+  <p class="abs">{{ it.abstract }}</p>
+</div>
+{%- endif -%}
+<div class="xp" id="{{ k }}-cite" hidden>
+  <p class="cite">{{ cite_html }}</p>
+  <button type="button" class="xcopy js-copy" data-copy="{{ cite_plain | strip_html | escape }}" data-copy-label="Citation copied">Copy citation</button>
+</div>

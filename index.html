@@ -1,0 +1,1039 @@
+---
+layout: home
+# ═══════════════════════════════════════════════════════════════════════════
+#  이 파일이 홈페이지의 내용 전부다. 코드는 없다 — 글, 목록, 어떤 그림을 어디에 보일지만 적는다.
+#  (뼈대는 _layouts/home.html, 디자인은 assets/site.css, 동작은 assets/site.js. 열어볼 필요 없다.)
+#
+#  규칙:
+#    · 값에 ": "(콜론+공백)이 들어가면 "따옴표" 로 감싼다.
+#    · 들여쓰기는 공백 두 칸. 탭은 쓰지 않는다.
+#    · # 으로 시작하는 줄은 메모다.
+#    · 그림은 폴더에 넣는다고 나오지 않는다. 여기에 적은 것만, 적은 순서대로 나온다 (figures:, preview:, gallery:).
+#      파일명을 잘못 적으면 로컬 미리보기 왼쪽 아래의 노란 상자가 알려 준다.  자세한 것은 README.md
+# ═══════════════════════════════════════════════════════════════════════════
+
+person:
+  name: Sanghoon Ji
+  name_ko: 지상훈
+  name_hanja: 池相训
+  name_en: Jason
+  role: Research Assistant
+  affiliation: George Mason University Korea
+  degree_line: M.S. Geography, Kyung Hee University
+  email: jason.sanghoon.ji@gmail.com
+  phone: "+82-10-8373-2634"
+  show_phone: false            # true to publish the number
+  city: Seoul, Republic of Korea
+  lat: 37.5967
+  lon: 127.0517
+  photo: /assets/profile/sanghoonji.png
+  photo_large: /assets/profile/sanghoonji_large.jpg   # 사진을 눌렀을 때 크게 뜨는 파일 (없으면 위 photo 를 그대로 쓴다)
+  share_image: /assets/profile/sanghoonji_share.jpg   # link previews (KakaoTalk, Slack, LinkedIn): no transparency, so no black corners
+  scholar: https://scholar.google.com/citations?user=Sg63d7MAAAAJ&view_op=list_works&sortby=pubdate
+  researchgate: https://www.researchgate.net/profile/Sanghoon-Ji-3
+  linkedin: https://www.linkedin.com/in/jasonjish
+  orcid: https://orcid.org/0000-0002-7295-5821
+  github: https://github.com/JasonJish
+  cv_pdf: /assets/cv/SANGHOONJI_CV_202609.pdf
+
+thesis: >-
+  I'm a geographer who turns environments into data — 3D models, pedestrian
+  networks, population surfaces — and asks <em>how reliably those data measure
+  the landscapes where people and ecological resources meet</em>.
+
+stats:
+  - { value: 6,  label: Peer-reviewed articles }
+  - { value: 20, label: Conference presentations }   # talks + posters (I1–I7, K1–K13) including a newsletter article
+
+about:
+  - >-
+    Beyond my master's work on slope-aware accessibility, I have built data from
+    UAV and LiDAR point clouds, satellite imagery, OpenStreetMap networks and
+    mobile-phone population records. Across these projects, choices inside the
+    data — the spatial unit, the walking network, the hour of the day — often
+    changed the answer to who has access.
+  - >-
+    Now at George Mason University Korea, I carry the same question to farmland,
+    tracing cropland abandonment trajectories in Ohio. In doctoral study I want
+    to pursue it wherever measurement shapes decisions — in cities, forests or
+    farmland.
+  - I am applying for doctoral study beginning Fall 2027.
+
+currently:
+  - key: Currently
+    value: Research Assistant, George Mason University Korea
+    note: >-
+      analysis of cropland abandonment trajectories<br>USDA Cropland Data Layer
+      time series, Ohio
+  - key: Education
+    value: M.S. Geography, Kyung Hee University
+    note: B.S. Geography<br>& B.A. Tourism (Dual Degree)
+  - key: Languages
+    value: Korean (native) · English (IELTS 7.5)
+
+# ── The filter chips. `id` is what you list under `topics:` further down. ──
+topics:
+  - { id: gis, name: GIS & Geomatics }
+  - { id: net, name: Spatial Networks & Accessibility }
+  - { id: mob, name: Human Mobility & Population Dynamics }
+  - { id: st,  name: Spatiotemporal Data Analysis }
+  # K-means·DBSCAN 군집분석, LDA 토픽모델링 같은 데이터 마이닝과 U-Net·XAI 를 함께 담는 이름.
+  - { id: ml,  name: Spatial Data Mining & Machine Learning }
+  # 드론·LiDAR 3차원 복원에 더해, 위성자료를 분석했거나(K13·P15·P6) 위성영상으로 자료를 구축한(P5·P13) 작업까지.
+  - { id: rs,  name: Remote Sensing & 3D Reconstruction }
+  # 방법이 아니라 대상으로 묶는 칩: 도시녹지 접근성, 산림복지·휴양, 문화 생태계서비스, 산림·토지피복 모니터링.
+  - { id: eco, name: "Forests, Green Space & Ecosystem Services" }
+
+# ── 사진 띠 (Research Focus 아래, 좌우로 넘기는 썸네일) ─────────────────────────
+#    여기 적은 그림·영상만, 아카이브의 파일을 가리켜서 보여 준다.  형식:  <코드>/<파일명>
+#      J7/…  → assets/journal/img/J7/…      P11/… → assets/project/img/P11/…
+#      K2/…, I6/… → assets/conference/img/K2/…
+#    caption 을 안 적으면 그 항목 figures: 에 적은 캡션을 쓴다. 누르면 그 항목으로 이동한다.
+#    순서는 방문할 때마다 섞이고, 주제 필터를 켜면 해당 연구의 그림만 남는다.
+gallery:
+  - file: J7/greenspace_02_concept-cube-annotated.png
+  - file: J7/greenspace_05_walking-catchment.png
+  - file: J7/greenspace_10_typology-map.png
+    caption: "Urban-forest exposure types across Seoul"
+  - file: J7/greenspace_11_g2sfca-concept.png
+  - file: J6/01_study-area.jpeg
+  - file: J6/03_trail-viewshed-method.jpeg
+  - file: J6/10_individual-simulation.jpeg
+  - file: J3/lidar3d_03_point-cloud.png
+  - file: J3/lidar3d_04_mesh-model.png
+  - file: J3/lidar3d_dronelink.mp4
+  - file: J3/vrcognition_02_research-framework.png
+  - file: J3/vrcognition_04_hmd-session.png
+  - file: J2/traffic_01_data-collection.png
+  - file: J2/traffic_02_congestion-analysis.png
+  - file: J2/traffic_03_congestion-encoding.png
+  - file: J2/traffic_04_congestion-encoding.png
+  - file: J2/traffic_05_congestion-encoding.png
+  - file: J4/11_simulation.jpg
+    caption: "Corridor crowding over time, 30–300 seconds"
+  - file: J5/32_algorithm-and-result.png
+  - file: I6/I6.jpg
+    caption: "Presenting at the AAG 2024 Annual Meeting, Honolulu"
+  - file: K2/K2.jpg
+    caption: "Habitually congested road sections around Seoul in the morning, in the evening and in both"
+  - file: P11/lidar3d_05_building-extraction.png
+  - file: P11/lidar3d_12_survey-uav-setup.png
+  - file: P11/lidar3d_18_survey-robot-spot.png
+
+# Author names matching this are underlined automatically.
+# 이 목록에 있는 이름은 자동으로 밑줄이 그어집니다.
+me: ["Sanghoon Ji", "Ji, S."]
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  PUBLICATIONS
+#  `key` 는 영구 코드(J1, J2 …). 그림·영상 원본은 assets/journal/img/<key>/ 에 넣고,
+#  그중 보여 줄 것을 아래 figures: 에 적는다 — 적은 것만, 적은 순서대로 나온다.
+#      figures:
+#        - file: 파일명.png
+#          caption: "캡션(선택)"
+#  preview: 파일명.png  → 제목 옆 대표사진. 없으면 figures 의 첫 그림.
+# ═══════════════════════════════════════════════════════════════════════════
+publications:
+  - key: J7
+    short: Forests 2025
+    abstract: >-
+      (1) Research Highlights: Existing studies primarily focus on the supply-side evaluation of urban forest accessibility, emphasizing physical proximity while often overlooking real-time usage patterns and demographic-specific exposure. This study shifts the focus to social exposure, analyzing how diverse population groups interact with urban forests across different times of the day, integrating dynamic accessibility metrics. (2) Background and Objectives: Unlike previous research that predominantly assessed urban forest accessibility through conventional models based on static spatial proximity, this study incorporates spatiotemporal population distribution data to capture actual utilization patterns. By introducing a dynamic, exposure-based framework, this research aims to facilitate equitable and temporally sensitive access to green spaces across diverse demographic groups. (3) Materials and Methods: This study focuses on Seoul, South Korea, and applies the Gaussian-based Two-Step Floating Catchment Area (G2SFCA) methodology to assess urban forest accessibility. Living population data (2021–2024) from mobile telecommunications sources were used as demand indicators, while OpenStreetMap (OSM) green space data were utilized as supply indicators. Realistic travel distances were calculated using OSM pedestrian networks and Dijkstra’s algorithm, incorporating slope effects and distance decay functions. A K-means clustering algorithm was applied to classify four distinct exposure types based on demographic and temporal variations. (4) Results: The findings reveal significant disparities in urban forest exposure based on age group and time of day. Four major urban forest exposure patterns were identified: Type A—school-age children, with peak usage around midday; Type B—working-age adults, frequenting mid-sized urban forests during commuting and leisure hours; Type C—elderly individuals, utilizing large-scale urban forests and neighborhood parks mainly in the morning; Type D—young adults, engaging with small urban parks and rest areas at various times. (5) Conclusions: Urban forest management must move beyond the quantitative expansion of green spaces and instead implement customized policies that optimize accessibility and equitable distribution based on distinct temporal and demographic patterns of social exposure. By integrating real-time urban mobility data into urban forest planning, policies can better align green space supply with actual usage, fostering a more equitable, data-driven, and sustainable urban green infrastructure.
+    year: 2025
+    kind: Peer reviewed
+    title: >-
+      Quantitative Evaluation and Typology of Social Exposure Patterns to
+      Urban Green Spaces: A Case Study of Seoul
+    authors: ["Sanghoon Ji", "Soojin Kim", "Jeonghee Lee", "Kyungwon Seo"]
+    journal: Forests
+    detail: 16(3), 510
+    first_author: true
+    url: https://doi.org/10.3390/f16030510
+    doi_label: doi:10.3390/f16030510
+    topics: [gis, net, mob, st, ml, eco]
+    contribution: >-
+      Quantified demographic and temporal disparities in urban ecosystem-service
+      accessibility via G2SFCA on de facto population and road-network data.
+    method: >-
+      Mobile-derived living population (2021–2024) served as demand and
+      OpenStreetMap green space as supply. Walking distances were computed with
+      Dijkstra's algorithm over the OSM pedestrian network with slope effects and
+      a Gaussian distance-decay function. K-means clustering on the
+      row-standardized hour × age-band profiles separated four exposure types —
+      school-age, working-age, elderly and young-adult — each with a distinct
+      daily rhythm.
+    terms: [G2SFCA, Dijkstra, "K-means", OpenStreetMap, De facto population, Distance decay]
+    preview: greenspace_10_typology-map.png
+    figures:
+      - file: greenspace_02_concept-cube-annotated.png
+        caption: "Space–time–population cube of green-space exposure"
+      - file: greenspace_05_walking-catchment.png
+        caption: "15-minute walking catchments of urban green spaces"
+      - file: greenspace_10_typology-map.png
+        caption: "Urban-forest exposure types across Seoul, with their hourly profiles by age group"
+      - file: greenspace_11_g2sfca-concept.png
+        caption: "The Gaussian 2SFCA concept"
+      - file: greenspace_14_methodology-flat.png
+        caption: "Analysis workflow: data preparation, 2SFCA index and K-means classification"
+
+  - key: J6
+    short: TGIS 2025
+    abstract: >-
+      This study introduces a trail-based framework for assessing spatially explicit cultural ecosystem services (ES) at a microscale, focusing on individual trail experiences within a mountain range. By integrating agent-based modeling with hiking data, we simulate and quantify the consumption of cultural ES by individuals on various trails, considering factors such as seasonal variations. Our approach contrasts with traditional map-based methods by emphasizing the dynamic, activity-based assessment of cultural ES supply and demand. The findings reveal significant spatial mismatches between the potential cultural ES provided by trails and their potential consumption by hiking, highlighting the importance of localized, trail-specific evaluations. The study's implications extend to environmental policy and management, where understanding these mismatches can guide targeted conservation and development efforts. While this study presents a contribution, we acknowledge limitations related to the geographic focus and dataset scope, suggesting that future research should incorporate more diverse data sources and expand the geographic range. This could enable more accurate simulations and assessments, particularly in data-scarce regions. Ultimately, this trail-based approach enhances the precision of cultural ES evaluation and offers valuable tools for policymakers and environmental managers to align conservation efforts with actual human activities.
+    year: 2025
+    kind: Peer reviewed
+    title: >-
+      Mapping the Unseen: Integrating Hiking Activities into Spatially Explicit
+      Cultural Ecosystem Service Assessment Through Agent-Based Modeling
+    authors: ["Moongi Choi", "Jang-Hwan Jo", "Hyeon Jung Kim", "Sanghoon Ji"]
+    journal: Transactions in GIS
+    detail: 29(1), e13285
+    url: https://doi.org/10.1111/tgis.13285
+    doi_label: doi:10.1111/tgis.13285
+    topics: [gis, mob, eco]
+    contribution: >-
+      Contributed simulation-environment development and data visualization to an
+      agent-based modeling (ABM) assessment of cultural ecosystem services from
+      hiking trails.
+    method: >-
+      The study replaces map-based cultural ES scoring with a trail-based,
+      activity-driven model: agents walk real trail geometries and consume
+      services along them, so supply and demand can be compared segment by
+      segment. The results expose spatial mismatches that an aggregate map
+      cannot show.
+    terms: [Agent-based modeling, Cultural ES, Trail networks, Supply–demand scoring]
+    preview: 10_individual-simulation.jpeg  
+    figures:
+      - file: 01_study-area.jpeg
+        caption: "Study area — Mireuksan, Iksan"
+      - file: 02_study-design.jpeg
+        caption: "Study design: map-based and trail-based assessment"
+      - file: 03_trail-viewshed-method.jpeg
+        caption: "Trail-based viewshed analysis"
+      - file: 04_viewshed-results.jpeg
+        caption: "Viewshed analysis result (a: Trail A, b: Trail J, c: all trails)"
+      - file: 05_hiking-time-elevation.jpeg
+        caption: "Trails A, B, F — (a) hiking time, (b) elevation by distance"
+      - file: 06_break-time-and-speed.jpeg
+        caption: "(a) Break time by trail, (b) speed by slope"
+      - file: 07_map-based-supply.jpeg
+        caption: "Map-based cultural ES supply score: (a) recreation, (b) landscape, (c) total"
+      - file: 08_trail-based-supply.jpeg
+        caption: "Trail-based cultural ES supply score"
+      - file: 09_model-validation.jpeg
+        caption: "Model validation with calibrated parameters"
+      - file: 10_individual-simulation.jpeg
+        caption: "Individual hiking simulation result for each trail"
+      - file: 11_trail-based-demand.jpeg
+        caption: "Trail-based cultural ES demand score (a: recreation, b: landscape, c: culture)"
+      - file: 12_normalized-supply-comparison.jpeg
+        caption: "Normalized supply score: map- and trail-based approaches"
+      - file: 13_spatial-comparison.jpeg
+        caption: "Spatial comparison of supply score, map- vs. trail-based"
+      - file: 14_supply-demand-by-season.png
+        caption: "Seasonal ranking of cultural ES supply and demand scores"
+
+  - key: J3
+    short: JTS 2022
+    abstract_note: Paper in Korean · official English abstract
+    abstract: >-
+      Immersive technologies such as augmented reality (AR) and virtual reality (VR) not only stimulate travelers' needs before, during, and after a trip but also provide new experiences. As the COVID-19 outbreak continues and non-face-to-face activities are preferred, the tourism industry considers immersive technology as an alternative tool to fulfill a traveler’s needs when traveling. Therefore, this study aims to investigate the value of virtual reality as a means to experience traveling and to understand the perception and behavior of tourists in virtual spaces and at tourist destinations from a behavioral geographic perspective. To do so, this research selected K Campus, located in Seoul, Republic of Korea, as the research destination and established virtual reality content for the experiment. This study used qualitative data from interviews and mental maps to better understand tourist perceptions and behavior. The data collected through interviews and mental maps is collected at two different periods: after the VR experience (t1) and after visiting the destination (t2). The results of the interview categorized the VR experience as (1) arousal, (2) immersive experience, (3) sensory experience, and (4) spatial presence. Furthermore, after visiting the destination, participants stated that movement in the virtual space influenced their actual behavior. This study attempted an in-depth approach to investigate participants' psychological states and perceptions.
+    year: 2022
+    kind: Peer reviewed
+    title: >-
+      The Attributes of Virtual Reality (VR) Experiences and Spatial Cognition
+      among Tourists: Focusing on a Behavioral Geographic Perspective
+    authors: ["Sanghoon Ji", "Hae Jin Hwang", "Chulsue Hwang", "Chulmo Koo", "Eunji Lee"]
+    journal: Journal of Tourism Sciences
+    detail: 46(4), 153–176
+    first_author: true
+    language: In Korean
+    url: https://doi.org/10.17086/JTS.2022.46.4.153.176
+    doi_label: doi:10.17086/JTS.2022.46.4.153.176
+    preview: lidar3d_04_mesh-model.png     # picture beside the title; default is the first file by name
+    topics: [rs, gis]
+    contribution: >-
+      Reconstructed a campus-scale 3D environment from UAV imagery via SfM
+      photogrammetry and implemented it in Unity as an HMD-based VR stimulus
+      for the experiment.
+    method: >-
+      The paper asks whether an immersive reconstruction changes how people build
+      a cognitive map of a place they have not visited. My part was the stimulus
+      itself: the flight plan, the SfM reconstruction and the
+      pedestrian-perspective Unity build delivered through a head-mounted display.
+    terms: [UAV-SfM, Photogrammetry, Unity, HMD VR, Spatial cognition]
+    preview: lidar3d_04_mesh-model.png
+    figures:
+      - file: lidar3d_01_sfm-workflow.png
+        caption: "SfM photogrammetry workflow: photo alignment, dense cloud, mesh and texture"
+      - file: lidar3d_02_uav-fieldwork.png
+        caption: "UAV image acquisition on campus"
+      - file: lidar3d_03_point-cloud.png
+        caption: "UAV-SfM point cloud"
+      - file: lidar3d_04_mesh-model.png
+        caption: "UAV-SfM 3D mesh model for VR"
+      - file: lidar3d_dronelink.mp4
+        caption: "UAV flight mission planned in DroneLink"
+      - file: vrcognition_02_research-framework.png
+        caption: "Research framework of the VR spatial-cognition study"
+      - file: vrcognition_03_participant-paths.png
+        caption: "One participant's routes in virtual reality and on the actual campus"
+      - file: vrcognition_04_hmd-session.png
+        caption: "Head-mounted display session in the VR experiment"
+      - file: vrcognition_05_interview-themes.jpg
+        caption: "Interview themes after the VR experience and after travel"
+
+  - key: J2
+    short: JKGS 2021
+    abstract_note: Paper in Korean · official English abstract
+    abstract: >-
+      The floating car data (FCD) method uses real-time vehicle locations to estimate traffic conditions. The use of FCD products for research can be limited by their costs and accessibility mainly because such datasets are collected by private companies. In this study, we propose a research method that utilizes FCD-based real-time traffic data from Google Maps. We constructed a real-time traffic map-based database (RTMDB) by compiling time-series real-time traffic map images. Using the RTMDB, we analyzed spatiotemporal congestion patterns in Montgomery County, Maryland, U.S.A. To check the reliability of RTMDB, a comparison analysis was conducted with traffic sensor data collected in the field. Results show that RTMDB is closely correlated to the collected data from traffic speed monitoring sensors. We also analyzed the congestion patterns depending on road types and AM/PM rush-hours.
+    year: 2021
+    kind: Peer reviewed
+    title: >-
+      Spatiotemporal Traffic Database Construction with Google Real-time Traffic
+      Information and Congestion Pattern Analysis: A Case Study of Montgomery
+      County, Maryland, USA
+    authors: ["Sanghoon Ji", "Jeong Seong", "Ana Stanescu", "Chulsue Hwang", "Yubin Lee"]
+    journal: Journal of the Korean Geographical Society
+    detail: 56(3), 265–276
+    first_author: true
+    language: In Korean
+    url: https://doi.org/10.22776/kgs.2021.56.3.265
+    doi_label: doi:10.22776/kgs.2021.56.3.265
+    topics: [st, mob, net, ml]
+    contribution: >-
+      Detected recurrent congestion patterns in a 3D spatiotemporal traffic
+      database constructed from Google Maps real-time traffic layers.
+    method: >-
+      Real-time congestion layers are rendered, not published — so the database
+      had to be harvested from the map tiles themselves, georeferenced onto the
+      road network and stacked into a space–time cube. Unsupervised clustering
+      then separated recurrent from non-recurrent congestion without any incident
+      log.
+    terms: [Space–time cube, DBSCAN, K-means, Web map harvesting]
+    preview: traffic_04_congestion-encoding.png
+    figures:
+      - file: traffic_01_data-collection.png
+        caption: "Collecting congestion data from online traffic maps"
+      - file: traffic_02_congestion-analysis.png
+        caption: "Reading the congestion level from the color of each map pixel"
+      - file: traffic_03_congestion-encoding.png
+        caption: "How a congestion episode is encoded along the time axis of the database"
+      - file: traffic_04_congestion-encoding.png
+        caption: "Congestion corridors and the daily congestion probability at three of them"
+      - file: traffic_05_congestion-encoding.png
+        caption: "Check against roadside sensors: congestion index, speed reduction and traffic volume"
+
+  # ── `others: true` 를 붙이면 "Other publications" 토글 안으로 들어갑니다.
+  #    (CV 미수록 공저 논문) ──
+  - key: J4
+    short: JKGS 2022
+    abstract_note: Paper in Korean · official English abstract
+    abstract: >-
+      Crowd crush accidents, one of the catastrophic urban disasters, have become frequent due to urban growth. To alleviate those potential risks, it is critical to not only understand the characteristics of pedestrian flow, but also provide appropriate crowd management, simultaneously. In this sense, our study examines how the population density increases according to the multiple variables associated with pedestrian movements (e.g., population, path width) and crowd control methods (e.g., right- hand traffic) through agent based modeling (ABM). In detail, we first built a passage in a virtual space and measured the population density changes over time with respect to the various pedestrian attributes (e.g., incoming counts and group ratio) and the passage characteristics (e.g., width and length). We then revisited the Itaewon stampede, which occurred in October 2022, and simulated how the population density would be curbed if a side barrier had been removed or the pedestrian rule had been implemented. As results, the pedestrian counts in the passage and the width of the passage were the two most significant variables causing the crowdedness. In addition, two advancements (i.e., right-hand traffic and no barrier in the passage) to the Itaewon stampede would result in meaningful improvement in the population density (i.e., less than six people /m2), which is less than the risky crowd crush threshold. Our study suggests that the population density monitoring system and pedestrian policy should be implemented in the future to effectively prevent the crowd crush accidents.
+    others: true
+    year: 2022
+    title: Risk assessments of crowds at bottlenecks through agent based modelling
+    authors: ["Moongi Choi", "Jinwoo Park", "Sanghoon Ji"]
+    journal: Journal of the Korean Geographical Society
+    detail: 57(6), 595–609
+    language: In Korean
+    note: Corresponding author
+    url: https://doi.org/10.22776/kgs.2022.57.6.595
+    doi_label: doi:10.22776/kgs.2022.57.6.595
+    topics: [gis, mob]
+    preview: 11_simulation.jpg
+    figures:
+      - file: 01_simulation-environment.png
+        caption: "Simulation environment"
+      - file: 02_case-study-corridor.png
+        caption: "Case-study corridor, Itaewon (source: Naver Map street view, Oct 2022)"
+      - file: 03_density-sampling.png
+        caption: "Per-second sampling of corridor flow density"
+      - file: 04_density-method-liddle2009.png
+        caption: "Density measurement method (after Liddle et al. 2009)"
+      - file: 05_parameter-calibration.png
+        caption: "Selected parameter pairs vs. observed throughput per hour"
+      - file: 06_simulation-timeline.png
+        caption: "Simulation over time — corridor flow 12,000, surrounding 4,000, group rate 50%, 3 m × 20 m, no keep-right"
+      - file: 07_scenario-density-results.png
+        caption: "Crowd density over time by scenario"
+      - file: 08_keep-right-effect.png
+        caption: "Change in peak crowd density under keep-right walking"
+      - file: 09_case-study-results.png
+        caption: "Case-study simulation result"
+      - file: 10_case-study-simulation-views.png
+        caption: "Case-study simulation views (left: barrier kept, no keep-right; right: barrier removed, keep-right)"
+      - file: 11_simulation.jpg
+        caption: "Corridor crowding over time: 30, 90, 150 and 300 seconds (up to 7.7 persons/m²)"
+
+  - key: J1
+    short: JKGS 2020
+    abstract_note: Paper in Korean · official English abstract
+    abstract: >-
+      With the gradual expansion of the scope of research in geography and the vast amount of research results being produced, it has become difficult to grasp the trend of research in recent geography studies. In this study, we tried to analyze the recent research trend and topics of geography by analyzing the abstracts submitted to the AAG Conference from 2018 to 2020, using the LDA-based Topic Modeling. All words in the abstract were tokenized and lemmatized to extract only nouns and adjectives. Eight topics; 'Political Ecology,' 'Geospatial Science,' 'Urban Development,' 'Geospatial Visualization,' 'Land Cover Change,' 'Health Geography,' 'Urban Community' and 'Political Geography' has been generated through the LDA. This study could contribute to geography researchers understanding the overall research trends in geography and exploring research topics that have recently drawn attention.
+    others: true
+    year: 2020
+    title: An analysis of the latest trends and topics in geography research using topic modeling
+    authors: ["Yubin Lee", "Youngho Lee", "Jeong Seong", "Ana Stanescu", "Sanghoon Ji", "Chulsue Hwang"]
+    journal: Journal of the Korean Geographical Society
+    detail: 55(6), 589–599
+    language: In Korean
+    url: https://doi.org/10.22776/kgs.2020.55.6.589
+    doi_label: doi:10.22776/kgs.2020.55.6.589
+    topics: [ml]
+    preview: topic_02_wordcloud.jpeg
+    figures:
+      - file: topic_01_result.jpeg
+        caption: "The trend of research in recent geography studies - graph"
+      - file: topic_02_wordcloud.jpeg
+        caption: "The trend of research in recent geography studies - wordcloud"
+      - file: topic_03_IDM.jpeg
+        caption: "Intertopic Distance Map"
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  RESEARCH EXPERIENCE — 과제도 `key` 와 figures: 를 같은 방식으로 쓴다 (원본: assets/project/img/<key>/).
+# ═══════════════════════════════════════════════════════════════════════════
+experience:
+  - org: George Mason University Korea
+    where: Incheon, Korea
+    span: 2026 – present
+    role: Research Assistant (Remote)
+    advisor: Dr. Sohyun Park
+    advisor_url: https://masonkorea.gmu.edu/people/spark230
+    projects:
+      - key: P15
+        title: Explainable-AI-Based Analysis of Cropland Abandonment Trajectories
+        period: April 2026 – present
+        topics: [ml, st, rs]
+        bullets:
+          - >-
+            Typologizing post-abandonment cropland trajectories in Ohio from USDA
+            Cropland Data Layer time series, and interpreting their
+            agro-ecological, demographic and hazard-related drivers with
+            explainable AI.
+        terms: [Cropland Data Layer, Trajectory typology, XAI]
+
+  - org: National Institute of Forest Science
+    where: Seoul, Korea
+    span: 2023 – 2024, 2026
+    role: Research Assistant
+    advisor: Dr. Sol-E Choi, Dr. Jeonghee Lee
+    projects:
+      - key: P14
+        short: NIFOS SAT
+        outputs: [K13]
+        title: Development of Data Fusion Technologies for Terrestrial Resource Monitoring
+        period: April – August 2026
+        topics: [ml, rs, gis, eco]
+        bullets:
+          - >-
+            Contributed to pre-launch preparation for Korea's first agriculture
+            and forestry satellite (CAS500-4, launched July 2026), evaluating
+            U-Net segmentation models and refining preprocessing for land-cover
+            classification.
+          - >-
+            Acquired UAV imagery of forest flux sites in field surveys for SfM 3D
+            reconstruction, and investigated UAV LiDAR point-cloud methods for
+            forest resource assessment.
+        terms: [CAS500-4, U-Net, Sentinel-2, UAV LiDAR, SfM]
+
+      - key: P12
+        short: NIFOS G2SFCA
+        outputs: [J7, I6, K8, K9, K10, K11, K12]
+        title: Assessment of Spatial Accessibility to Urban Ecosystems
+        period: December 2023 – September 2024
+        topics: [net, mob, gis, eco]
+        bullets:
+          - >-
+            Assessed urban green-space accessibility with G2SFCA on de facto
+            population data and road networks — the work behind the
+            <i>Forests</i> 2025 article.
+        terms: [G2SFCA, Pedestrian network, De facto population]
+
+  - org: Korea Research Institute for Local Administration
+    where: Wonju, Korea
+    span: 2025 – 2026
+    role: Research Assistant
+    advisor: Dr. Wondo Lee
+    projects:
+      - key: P13
+        title: Assessment of Energy Grid Strategies for Regional Equity
+        period: October 2025 – March 2026
+        topics: [net, gis, rs]
+        bullets:
+          - >-
+            Built a nationwide power-grid network dataset from OpenStreetMap and
+            satellite imagery for a national assessment of grid development and
+            regional equity.
+        terms: [OpenStreetMap, Network topology, Regional equity]
+
+      - key: P13
+        title: Analysis of the Daily Population Dynamics in Depopulating Areas
+        period: March – October 2025
+        topics: [mob, net, st]
+        bullets:
+          - >-
+            Identified shrinking regions nationwide using demographic and
+            socioeconomic indicators, and delineated neighborhood areas via
+            community detection and BiFlowLISA on inter-regional flow networks.
+          - >-
+            Processed de facto population and credit-card transaction data with
+            SAS and SQL, and examined visiting patterns in depopulating regions
+            for a national policy report.
+        terms: [Community detection, BiFlowLISA, OD flow networks, SAS, SQL]
+
+  - org: Kyung Hee University
+    where: Seoul, Korea
+    span: 2020 – 2024
+    role: Research Assistant
+    advisor: Dr. Chulsue Hwang
+    advisor_url: https://scholar.google.com/citations?user=b4pNrhYAAAAJ&sortby=pubdate
+    projects:
+      - key: P11
+        short: KHU LiDAR
+        outputs: [I7]
+        title: UAV/LiDAR-Based 3D Geospatial Modeling and Simulation
+        period: May 2022 – December 2024
+        funder: Korea Spatial Information Industry Promotion Agency (SpaceN)
+        topics: [rs, gis, ml]
+        bullets:
+          - >-
+            Processed UAV LiDAR point clouds and produced semantic 3D models
+            through a Python reconstruction workflow, then simulated seasonal
+            energy demand and photovoltaic potential on them.
+        terms: [UAV LiDAR, Point-cloud segmentation, CityGML, PV potential]
+        figures:
+          - file: lidar3d_01_research-procedure.png
+            caption: "Research procedure: LiDAR acquisition to CityGML buildings and energy simulation"
+          - file: lidar3d_05_building-extraction.png
+            caption: "Building extraction from UAV point clouds"
+          - file: lidar3d_06_roof-detection-dbscan.png
+            caption: "Stepwise DBSCAN for roof detection"
+          - file: lidar3d_07_octree-voxel.png
+            caption: "Octree-based voxel simplification of the point cloud"
+          - file: lidar3d_08_non-roof-filtering.png
+            caption: "Filtering non-roof elements: vegetation, ground and walls"
+          - file: lidar3d_09_roof-polygon-generation.png
+            caption: "3D roof polygon generation with alpha shapes"
+          - file: lidar3d_10_citygml-building-generation.png
+            caption: "CityGML 2.0 LoD2 building generation"
+          - file: lidar3d_11_survey-mms-vehicle.png
+            caption: "Vehicle-mounted mobile mapping system"
+          - file: lidar3d_12_survey-uav-setup.png
+            caption: "Preparing a UAV LiDAR survey"
+          - file: lidar3d_13_survey-handheld-scanner.png
+            caption: "Handheld laser scanner"
+          - file: lidar3d_14_survey-tls-indoor.png
+            caption: "Terrestrial laser scanning indoors"
+          - file: lidar3d_15_survey-tls-atrium.png
+            caption: "Terrestrial laser scanning in an atrium"
+          - file: lidar3d_16_survey-uav-field.png
+            caption: "UAV LiDAR flight in the field"
+          - file: lidar3d_17_survey-mms-field.png
+            caption: "Mobile mapping survey on campus"
+          - file: lidar3d_18_survey-robot-spot.png
+            caption: "Survey with a legged robot scanner"
+
+      - key: P3
+        title: National Atlas of Korea Publication Project
+        period: July 2020 – December 2024
+        funder: Korean Geographical Society (KGS)
+        topics: [gis]
+        bullets:
+          - >-
+            Designed automated cartographic workflows for the National Atlas of
+            Korea using ArcGIS ModelBuilder.
+        terms: [ArcGIS ModelBuilder, Cartographic automation]
+
+      - key: P6
+        title: Satellite-Based Monitoring of Agriculture & Infrastructure in North Korea
+        period: June 2020 – December 2022
+        funder: Korean Geographical Society (KGS)
+        topics: [gis, net, rs]
+        bullets:
+          - >-
+            Quantified seasonal changes in crop-growing and reclaimed areas using
+            satellite-derived NDVI and land-classification indices for
+            food-security and disaster-risk assessment.
+          - >-
+            Digitized roads, railways and hubs from satellite imagery into a
+            transportation-network geospatial database, and assessed regional
+            connectivity through GIS-based topological analysis.
+        terms: [NDVI time series, Land classification, Network digitizing, Topological analysis]
+
+      - key: P5
+        title: Spatial Data Collection of Renewable Energy Facilities
+        period: June – September 2020
+        funder: Korea Development Institute (KDI)
+        topics: [gis, rs]
+        bullets:
+          - >-
+            Assembled a nationwide spatial panel dataset of renewable-energy
+            facilities by integrating satellite-detected photovoltaic sites with
+            public big-data sources.
+        terms: [Spatial panel, PV site detection]
+
+  - org: University of West Georgia
+    where: Carrollton, GA, USA
+    span: 2020 – 2022
+    role: Visiting Scholar
+    advisor: Dr. Jeong Seong
+    advisor_url: https://www.westga.edu/share/documents/vitae/vita_010790.pdf
+    projects:
+      - key: P7
+        short: UWG Big Data
+        outputs: [J1, J2, I1, I2, I3, K1, K2, K3]
+        title: >-
+          Development of Analytical Methods for 3D Spatiotemporal Big Data 
+          Applying Machine Learning 
+        period: June 2020 – May 2022
+        funder: Ministry of Science and ICT, Republic of Korea
+        topics: [st, mob, ml]
+        bullets:
+          - >-
+            Selected for a global training program and completed a nine-month
+            research residency at UWG.
+          - >-
+            Constructed 3D spatiotemporal traffic databases from Google Maps
+            real-time traffic layers and classified recurrent and non-recurrent
+            congestion with unsupervised clustering (DBSCAN, K-means).
+        terms: [Space–time cube, DBSCAN, K-means]
+
+education:
+  - when: February 2023
+    key: J5
+    short: KHU 2023
+    kind_label: Thesis
+    cite: >-
+      Ji, S. (2023). A study on urban disparities in shared bicycle services using
+      open source analysis tools [Master's thesis, Kyung Hee University].
+      <a href="https://www.riss.kr/link?id=T16666806" target="_blank" rel="noreferrer">https://www.riss.kr/link?id=T16666806</a>
+    abstract_src: summary
+    abstract_note: Written in Korean · English summary of the Korean abstract
+    abstract: >-
+      To analyze intra-urban disparities in access to Seoul’s shared bicycle service, this study designed and applied Sel_PedLink, an open-source tool that computes reachable areas reflecting slope-dependent travel speed and waiting at traffic signals, and derives building-level accessibility indices with the enhanced two-step floating catchment area (E2SFCA) method, which considers supply, demand and distance decay. Bicycle accessibility research has lagged because it needs fine-grained spatial data, movement varies with terrain, and commercial software is costly and hard to extend. Following the open spatial sciences approach, the tool relies on openly available data for reproducibility and replicability and uses Dijkstra’s algorithm for shortest-path search. Its performance was evaluated with the root mean square deviation (RMSD), the usability and limitations of existing route-finding services were analyzed, and actual riding data were collected to verify the slope-dependent speed variable and the estimated travel times. Applied to Seoul, with buildings classified by use (residential, commercial, public and educational, office, industrial and other), the tool identified areas with poor access to shared bicycles for each category; the results can serve as evidence for policies that promote residents’ welfare and the use of shared bicycles. Compared with studies relying on commercial software, the open-source package is expected to lower costs and reduce dependence on specific software.
+    degree: M.S. in Geography
+    institution: Kyung Hee University
+    where: Seoul, Korea
+    extra: GPA 4.38 / 4.5
+    advisor: Dr. Chulsue Hwang
+    advisor_url: https://scholar.google.com/citations?user=b4pNrhYAAAAJ&sortby=pubdate
+    thesis: >-
+      A Study on Urban Disparities in Shared Bicycle Services Using Open Source
+      Analysis Tools
+    thesis_language: in Korean
+    thesis_detail: >-
+      Built a Python package computing 2SFCA accessibility via Dijkstra routing
+      with DEM-derived, slope-dependent cycling speeds. Validated travel-time
+      estimates against GPS records and quantified building-level bike-share
+      accessibility disparities across Seoul.
+    figures:
+      - file: 32_algorithm-and-result.png
+        caption: "Accessibility algorithm and building-level result"
+
+  - when: February 2020
+    degree: B.S. in Geography & B.A. in Tourism
+    degree_note: Dual Degree
+    institution: Kyung Hee University
+    where: Seoul, Korea
+    extra: GPA 3.84 / 4.5
+
+# 강의·조교 항목에도 `topics:` 를 적으면 Research Focus 칩의 숫자에 들어가고 필터에도 걸린다.
+# (필터를 켰을 때 맞는 항목이 하나도 없으면 Teaching 구역은 통째로 숨는다)
+teaching:
+  - org: Korean Geographical Society
+    where: Seoul, Korea
+    span: "2024"
+    role: Guest Lecturer
+    unit: lectures
+    items:
+      - when: Nov – Dec 2024
+        title: Applications of Geographic Information Technologies
+        topics: [rs, gis]
+        note: Lectured on 3D spatial-information construction and web-mapping services.
+      - when: November 2024
+        title: Geospatial Analysis and Applications Training Program
+        topics: [rs, gis, net]
+        note: Lectured on vector, raster and network data processing with QGIS.
+
+  - org: Kyung Hee University
+    where: Seoul, Korea
+    span: 2020 – 2024
+    role: Teaching Assistant
+    unit: courses & workshop      # word after the count on the + toggle
+    items:
+      - when: Fall 2022 – 2024
+        title: Applications of Geographic Information and Technology
+        code: GEOG4062
+        topics: [rs, gis]
+        note: Developed and delivered the UAV practicum modules (SfM-based 3D reconstruction).
+      - when: Summer 2023
+        title: Geospatial Workshop, University of West Georgia
+        topics: [gis]
+        note: Led a hands-on geospatial analysis workshop for undergraduate students.
+      - when: Spring 2020 – 2022
+        title: Introduction to Geographic Information Systems and Science
+        code: GEOG201401
+        topics: [gis]
+        note: >-
+          Produced tutorial videos for GIS practical sessions and mentored
+          undergraduate research projects.
+      - when: Fall 2020
+        title: Cartography
+        code: GEOG1007
+        topics: [gis]
+        note: Monitored student progress and provided feedback on individual mapping projects.
+
+honors:
+  - group: Honors & Funding
+    items:
+      - when: Oct 2020 – Jun 2021
+        amount: "$15,900"
+        title: High-Potential Individuals Global Training Program
+        note: >-
+          Ministry of Science and ICT, Republic of Korea. Visited the University
+          of West Georgia as a visiting scholar (J-1 visa).
+      - when: Jul 2020 – Feb 2022
+        amount: "$3,500"
+        title: Kyung Hee University Academic Excellence Scholarship
+        note: >-
+          Office of Educational Innovation & Planning. Awarded for research
+          output — two first-authored journal articles and four first-authored
+          conference presentations.
+      - when: Mar – Aug 2021
+        amount: "$1,500"
+        title: Kyung Hee University Faculty-Nominated Research Scholarship
+        note: Nominated by Dr. Chulsue Hwang, Department of Geography.
+
+  - group: Professional Development & Service
+    items:
+      - when: "2024"
+        title: KAGES Mentoring Program — Mentee
+        note: "Mentor: Dr. Taejin Park, NASA Ames Research Center."
+      - when: "2022"
+        title: KAGES Mentoring Program — Mentee
+        note: "Mentor: Dr. Junghwan Kim, Virginia Tech."
+      - when: June 2021
+        title: NASA ARSET Certificate of Completion
+        note: Using Google Earth Engine for Land Monitoring Applications.
+      - when: Jul – Aug 2018
+        title: Research Assistant Intern, Korea Transport Institute (KOTI)
+        note: Origin–Destination Network Analysis Team, Department of National Transport Big Data.
+      - when: 2014 – 2016
+        title: Military Training Instructor
+        note: Republic of Korea Air Force Basic Military Training Wing.
+
+talks:
+  - group: International
+    items:
+      - year: 2024
+        key: I7
+        short: AAG 2024
+        abstract: >-
+          Through the use of a digital twin, real-world phenomena can be simulated in a virtual environment. The demand for digital twins is increasing as efforts to construct a digital world identical to the physical world for monitoring and simulation purposes continue. Interest in 3D city spatial information for storing, managing, and analyzing diverse forms of data generated in cities is growing, particularly in regions where high-quality 3D models are available. However, difficulties in editing and sharing arise due to differences in model formats. As a solution, CityGML stands out as the Open Geospatial Consortium's (OGC) 3D spatial information data standard for the exchange and representation of city data. Recent cases in cities involve the construction of 3D urban spatial data in CityGML format. This involves creating 3D city models based on aerial LiDAR (Light Detection and Ranging) surveys and developing CityGML-based virtual city models through workflows involving data collection, extraction, transformation, and loading processes. The study discusses potential future scenarios, including real-time data visualization, based on this workflow. To achieve a more precise and realistic implementation, aerial LiDAR was chosen as the method for aerial surveys. In this research, relatively low-cost aerial LiDAR was utilized for large-scale 3D city model creation. The results are demonstrated through a case study of the Kyung Hee University Seoul Campus area. Leveraging the findings of this research, one can anticipate conducting 3D spatial analysis and building a digital twin capable of real-time data collection and analysis through connectivity with IoT sensors.
+        authors: ["Jimin Kim", "Hyunwoo Nam", "Sanghoon Ji", "Chulsue Hwang"]
+        title: >-
+          Construction of CityGML-Based 3D Digital Twin using UAV: A Case Study
+          of Kyung Hee University, Seoul
+        venue: AAG Annual Meeting · April 2024 · Honolulu, USA
+        topics: [rs, gis]
+      - year: 2024
+        key: I6
+        short: AAG 2024
+        related: [J7]
+        abstract: >-
+          The significance of urban green spaces in enhancing leisure, health, and quality of life in expanding cities is increasingly acknowledged. These areas are vital for addressing environmental challenges and providing restorative spaces for urban residents, aligning with global efforts like the Paris Agreement and UN SDGs to combat climate change. This study focuses on examining the accessibility disparities to urban forests in Seoul, highlighting the research need to ensure equitable access to green spaces for all, thereby promoting urban well-being and environmental sustainability. By applying the Enhanced 2-Step Floating Catchment Area (E2SFCA) method, the study quantitatively evaluates the distribution of green spaces relative to the population's needs, factoring in both demand and supply, along with the competitive and cumulative opportunities provided by proximity to these areas. The analysis incorporates de facto population data at the building level, reflecting real-world usage patterns, and utilizes green space and park data from the Seoul Metropolitan Government and the Ministry of Environment. To reflect the complex pedestrian conditions in urban areas, a walkable road network was extracted from OpenStreetMap (OSM) and utilized. The findings reveal specific regions within Seoul facing imbalances between the demand for and supply of urban greenery, offering insights into the planning and expansion of forest welfare services. Future directions include conducting simulation studies on the strategic development of green spaces in identified areas to maximize the benefits for urban residents, thereby improving their quality of life through targeted urban planning and policy initiatives.
+        authors: ["Sanghoon Ji", "Jimin Kim", "Hyunwoo Nam", "Jeonghee Lee"]
+        title: Assessing Spatial Accessibility in Forest Welfare for Enhanced Quality of Life
+        venue: AAG Annual Meeting · April 2024 · Honolulu, USA
+        topics: [net, mob, gis, eco]
+      - year: 2023
+        key: I5
+        short: SFEM 2023
+        related: [J6]
+        abstract_note: Presented with the same abstract as the paper (J6)
+        abstract: >-
+          This study introduces a trail-based framework for assessing spatially explicit cultural ecosystem services (ES) at a microscale, focusing on individual trail experiences within a mountain range. By integrating agent-based modeling with hiking data, we simulate and quantify the consumption of cultural ES by individuals on various trails, considering factors such as seasonal variations. Our approach contrasts with traditional map-based methods by emphasizing the dynamic, activity-based assessment of cultural ES supply and demand. The findings reveal significant spatial mismatches between the potential cultural ES provided by trails and their potential consumption by hiking, highlighting the importance of localized, trail-specific evaluations. The study's implications extend to environmental policy and management, where understanding these mismatches can guide targeted conservation and development efforts. While this study presents a contribution, we acknowledge limitations related to the geographic focus and dataset scope, suggesting that future research should incorporate more diverse data sources and expand the geographic range. This could enable more accurate simulations and assessments, particularly in data-scarce regions. Ultimately, this trail-based approach enhances the precision of cultural ES evaluation and offers valuable tools for policymakers and environmental managers to align conservation efforts with actual human activities.
+        authors: ["Moongi Choi", "Jang-Hwan Jo", "Hyeon Jung Kim", "Sanghoon Ji"]
+        title: Assessing Cultural Ecosystem Services Supply and Demand Using Agent-Based Modeling
+        venue: >-
+          International Symposium on Sustainable Forest Ecosystem Management ·
+          August 2023 · Jeju, Korea (Virtual)
+        topics: [gis, mob, eco]
+      - year: 2022
+        key: I4
+        short: AAG 2022
+        abstract: >-
+          As traffic data collection and processing methods have evolved, various traffic congestion related studies like traffic volume prediction have been conducted. However, in most cities, problems such as increased travel time, wasted resources, and increased air pollution are still caused by traffic congestion. In this study, by focusing on the characteristics of the periodicity of traffic congestion, we present the research results applied to urban congestion by extracting daily traffic congestion patterns in Atlanta, Georgia. Traffic congestion database(TCD) was constructed by extracting traffic congestion information from Google Map traffic information images in the form of Real Time Map (RTM) based on FCD (Floating car data). First, using this, the characteristics of congestion by day of the week and the characteristics of congestion at major congestion points were studied. The characteristics of urban traffic congestion showing periodicity according to time factors such as day of the week, morning and afternoon, weekdays and weekends were confirmed. Therefore, the K-means clustering method was used to extract patterns according to the change in congestion level during the day. And pattern-based congestion map was produced that provides intuitive spatio-temporal information about urban congestion based on the six extracted congestion patterns. The data acquisition and 3D formal structure database construction method presented in this study will be applicable to various studies requiring traffic congestion information. In addition, this study is expected to be valuable as a tool for making traffic policy decisions in other cities by suggesting the characteristics of traffic congestion based on congestion patterns.
+        authors: ["Hyunmin Kim", "Seorim Cho", "Hyeokjin Hong", "Jeong Seong", "Ana Stanescu", "Chulsue Hwang", "Sanghoon Ji"]
+        title: >-
+          Traffic Big-data Analysis with Google Maps Spatio-temporal Database:
+          Atlanta, Georgia, 2021
+        venue: AAG Annual Meeting · February 2022 · Virtual
+        topics: [st, mob, ml]
+      - year: 2021
+        key: I3
+        short: AAG 2021
+        related: [J2]
+        abstract: >-
+          Traffic congestions incur significant social-economic costs and infringe the quality of life for urban people. To approach these social problems, it is necessary to understand where, when, and how congestions occur. However, it is very expensive to collect traffic data in a large-scale metropolitan area. Therefore, this study explored a method to use Web-based mapping service data mining technology to collect traffic congestion information. With the spread of smartphones equipped with GPS, companies like Google can collect real-time traffic data. The raw data, however, is not publicly available. Thus, we collected multiple snapshots of online traffic maps with python programming and web crawling techniques, and then RGB values of each pixel were analyzed to extract traffic information. The data was used to compute various statistics and analyze spatio-temporal patterns. Results revealed congestion patterns, durations, frequencies, and severity. This study showed that online map datasets can be an invaluable resource to analyze spatio-temporal patterns traffic information when they were coupled with big-data handling and GIS techniques.
+        authors: ["Sanghoon Ji", "Jeong Seong", "Yubin Lee", "Ana Stanescu", "Chulsue Hwang"]
+        title: >-
+          An Exploratory Spatial Pattern Analysis Using a Traffic Congestion
+          Data-Mining Approach with an Online Map Service
+        venue: AAG Annual Meeting · April 2021 · Virtual
+        topics: [st, mob, net]
+
+  - group: Domestic
+    items:
+      - year: 2024
+        key: K10
+        short: KSFS 2024 · MAUP
+        abstract_note: Presented in Korean · official English abstract
+        abstract: >-
+          Urban Green Space may have a positive impact on people’s physical and mental health. To this end, many local governments put many efforts on newly installing urban green spaces to improve an access to green spaces for people, which in turn, may helps people’s quality of life. To quantitatively measure the spatial accessibility of green spaces, it needs to employ Geographic Information Systems. Particularly, a Two-Step Floating Catchment Area (2SFCA) Method has been advocated as a means of measuring spatial accessibility of healthcare services as well as urban green spaces. 2SFCA method helps to assess the spatial accessibility, incorporating demands, supplies, and traffics. Importantly, the results from 2SFCA method may vary according to the spatial units (i.e., eup/myeon/dong, output area). The government officers (or stakeholders) may need to consider about such varying effects when making spatial decisions in regard to improving an access to green spaces for people. In this regard, this study measures spatial accessibility for urban green space, taking Seoul as a case study, and explores an effect of modifiable area unit problem (MAUP) in spatial accessibility measures.
+        authors: ["Jeon-Young Kang", "Jinwoo Park", "Sanghoon Ji", "Jeonghee Lee", "Kyungwon Seo"]
+        title: >-
+          Modifiable Areal Unit Problem in Measuring Spatial Accessibility to
+          Urban Green Space: The Case Study of Seoul
+        venue: >-
+          Korean Society of Forest Science, Summer Conference ·
+          August 2024 · Jeju, Korea
+        topics: [net, gis, eco]
+      - year: 2022
+        key: K6
+        short: KST 2022
+        related: [J5]
+        abstract_src: translation
+        abstract_note: Presented in Korean · English translation
+        abstract: >-
+          This study develops an open-source Python package that enables accessibility measurement by different modes of transport using the nationwide Standard Node-Link dataset provided as public data. The motivation lies in reducing reliance on commercial software and online map platforms for route selection and for assessing accessibility to destinations such as major neighborhood-level public facilities (“living SOC”), and in letting anyone use the tool without particular cost or restriction. Using the national standard traffic information network data, we construct a graph of nodes and links, and design algorithms that estimate service areas by travel time, considering average travel speeds by transport mode. Furthermore, we confirm that the derived service areas can be applied to the two-step floating catchment area (2SFCA) method for accessibility evaluation. Once released, the package is expected to make it easier for researchers to compute transport accessibility, and to be extended with additional algorithms and improved through user feedback.
+        authors: ["Sanghoon Ji", "Seungyeon Lee", "Taekeon Hwang", "Wondo Lee"]
+        title: >-
+          Open Source Package for Measuring Geographic Accessibility
+          Using the National Traffic Information Network
+        venue: >-
+          International Conference of the Korean Society of Transportation ·
+          September 2022 · Seoul, Korea
+        topics: [net, gis]
+
+  - group: Posters & Other
+    items:
+      - year: 2026
+        key: K13
+        short: KSRS 2026
+        kind_label: Poster
+        abstract_src: summary
+        # After the conference (October 2026) this can read "Presented in Korean · English summary".
+        abstract_note: Abstract in Korean · English summary
+        abstract: >-
+          Land-cover classification with satellite imagery and deep learning has mostly been confined to limited test sites, and its performance at the national scale has not been examined sufficiently. This study classified land cover across the Republic of Korea with multi-temporal Sentinel-2 imagery (April, September and November 2025) and a U-Net model. Training sites were designed to reflect both the national representativeness of each land type and the spatial dispersion and complexity of land nationwide. Inputs were monthly median composites of five bands, GLCM texture derived from them and terrain slope from a DEM; the Ministry of Environment land-cover map was reclassified into the six IPCC land-use categories, giving 3,185 training tiles of 256 × 256 pixels at 10 m resolution. Overall accuracy averaged 85.1 ± 0.8% over three training runs. Forest and wetland were classified with high accuracy, whereas small classes such as grassland and other land showed low accuracy, which spectral separability analysis (Jeffries–Matusita distance) attributed not only to small sample sizes but also to spectral overlap with adjacent classes. In future work, data from the agriculture and forestry satellite (three-day revisit, 5 m resolution) are expected to improve the separation of such classes and raise classification precision.
+        authors: ["Eunseo Shin", "Sanghoon Ji", "Suyeon Kim", "Eunsook Kim", "Chan-Ryul Park", "Sol-E Choi"]
+        title: >-
+          Nationwide Land Cover Classification Using Multi-Temporal Sentinel-2
+          Imagery and Deep Learning
+        venue: >-
+          Korean Society of Remote Sensing, Annual Conference ·
+          October 2026 · Busan, Korea · Accepted
+        topics: [ml, gis, rs, eco]
+      - year: 2024
+        key: K12
+        short: WFFT 2024
+        kind_label: Poster
+        related: [J7]
+        abstract: >-
+          Urban green spaces are essential for enhancing the mental and physical health of urban residents. Specifically, green spaces within a 15-minute walking distance have been shown to significantly improve the quality of life for city dwellers (Korea Forest Research Institute, 2023). Recently, the Two-Step Floating Catchment Area (2SFCA) method has been employed to assess accessibility to green spaces by calculating the available green space per capita. This approach primarily focuses on demand side, identifying areas with inadequate green space accessibility or where additional supply may be required. However, shifting the perspective to that of the green space provider can offer new insights into the extent and diversity of population exposure to each urban green space, thereby informing function development and resource allocation. This study seeks to quantify the exposure of various population groups to each urban green spaces. The research involves calculating the population exposed per unit area of green space by dividing the number of people in the vicinity by the total green space area near each building. This data is then aggregated to determine the total population exposure for each green space. Variables such as gender, age, and time of day are considered to define potential green space usage patterns, and the results are clustered using the K-Means algorithm to identify green spaces exhibiting similar exposure patterns. Real-time population data from KT mobile users, reflecting the dynamic distribution of urban populations, was used for demand analysis. Green space information from OpenStreetMap (OSM) was standardized by dividing into a 100m grid to prevent overestimation of large forests. GIS technologies, including the Dijkstra pathfinding algorithm, were applied to compute realistic travel distances, with distance decay and slope-adjusted walking speeds also considered. Using Seoul as a case study, the interactions between green spaces and urban residents within a 15-minute walking distance were categorized. The analysis identified multiple distinct categories, each characterized by the gender, age, and time of day of the exposed population. These findings provide valuable insights for urban forest management and resource allocation strategies, helping to optimize the distribution and management of urban green spaces.
+        authors: ["Sanghoon Ji", "Jeonghee Lee", "Kyungwon Seo"]
+        title: >-
+          Exploring Population Exposure Patterns to Urban Green Spaces Using the
+          2SFCA Methodology
+        venue: World Forum on Forest Therapy · October 2024 · Daejeon, Korea
+        topics: [net, mob, ml, eco]
+      - year: 2024
+        key: K11
+        short: KSFS 2024
+        kind_label: Poster
+        related: [J7]
+        abstract_note: Presented in Korean · official English abstract
+        abstract: >-
+          Urban green spaces significantly enhance residents' mental and physical health by providing environments for relaxation and rejuvenation. Despite their non-excludable nature, these spaces are finite and resemble common-pool resources, necessitating quantitative methods to assess accessibility. This study applies the G2SFCA method to measure the accessibility of urban green spaces within a 15-minute walking radius. Demand was gauged using de facto population data from buildings, while supply was assessed through green space data from various governmental and OSM sources. The research employed network-based distance calculations and Gaussian functions for distance decay to determine per capita accessible green space and population support capacities of these areas. Results identify disparities in green space distribution, providing actionable insights for urban planning and the equitable enhancement of urban environments.
+        authors: ["Sanghoon Ji", "Jeonghee Lee", "Kyungwon Seo"]
+        title: >-
+          Quantifying Urban Green Space Accessibility in Seoul: Applying the
+          Gaussian 2-Step Floating Catchment Area (G2SFCA)
+        venue: >-
+          Korean Society of Forest Science, Summer Conference ·
+          August 2024 · Jeju, Korea
+        topics: [net, mob, eco]
+      - year: 2022
+        key: K5
+        short: KHU Seminar 2022
+        kind_label: Poster
+        related: [J3]
+        abstract_src: summary
+        abstract_note: Presented in Korean · English summary
+        abstract: >-
+          This study explores how to build three-dimensional (3D) spatial data with an unmanned aerial vehicle (UAV) and turn it into a virtual reality (VR) environment, a technique that is cheaper and simpler than acquiring data with satellites or manned aircraft. Aerial images of the Kyung Hee University Seoul campus were collected with a UAV, and areas that could not be reconstructed properly because of shadows were supplemented with ground-level images. A 3D model was produced with photogrammetry-based image-processing software and imported into Unity as the backdrop of the virtual environment, whose detailed settings were configured with C# scripts. The resulting VR can be run from a pedestrian viewpoint; given the attention non-contact tourism received during the spread of COVID-19, we judge that it could serve as a medium for virtual tourism in the future. The technique could also serve as an alternative for building VR and 3D spatial data in developing countries where imagery-acquisition systems are inadequate.
+        authors: ["Sanghoon Ji", "Eunji Lee", "Haejin Hwang"]
+        title: >-
+          Development of Immersive Virtual Reality from a Pedestrian Perspective
+          Using a UAV-SfM 3D Model
+        venue: >-
+          1st Kyung Hee University Graduate School Joint Academic Seminar ·
+          January 2022 · Seoul, Korea
+        topics: [rs]
+      - year: 2021
+        key: K2
+        short: KGS 2021
+        kind_label: Poster
+        related: [J2]
+        abstract_src: summary
+        abstract_note: Presented in Korean · English summary
+        abstract: >-
+          Floating-car data (FCD) are difficult for individual researchers to obtain and process, so this study presents an alternative way to acquire FCD-based traffic information: the real-time traffic map (RTM) of an online map service. KakaoMap images of the Seoul metropolitan area were collected repeatedly with Python at the same center point and scale, and the pixels indicating congestion were extracted. In total, 3,600 images taken at 10-minute intervals over 25 days between March 8 and April 22, 2021, weekdays only, were stacked into a real-time traffic map-based database (RTMDB), an array whose X–Y axes represent space and whose Z axis represents time, with orange and red pixels converted to congestion index values of 1 and 2. Summing the index over the study area showed that congestion peaked at 8:30 a.m. and 6:40 p.m. Congestion probability was then calculated for each road point, and habitually congested sections in the morning, in the evening and under both conditions were mapped to compare their distributions. In the future, the RTMDB could serve as basic data for regional traffic analysis and traffic policy-making, and with machine learning it is expected to be useful for predicting traffic conditions and analyzing trends.
+        authors: ["Sanghoon Ji", "Jeong Seong", "Ana Stanescu", "Chulsue Hwang", "Yubin Lee"]
+        title: >-
+          Exploratory Spatiotemporal Congestion Pattern Analysis Using Real-time
+          Traffic Congestion Data Collection Method within Online Map Service:
+          A Case Study of Seoul
+        venue: Korean Geographical Society, Annual Conference · June 2021 · Virtual
+        topics: [st, mob]
+      - year: 2021
+        key: I2
+        short: AAG Newsletter 2021
+        kind_label: Article
+        related: [J1]
+        abstract_src: excerpt
+        abstract_note: Excerpt from the newsletter article
+        abstract: >-
+          Building off of an analysis completed for the cancelled in-person portion of the 2020 AAG Annual Meeting, Seong et al. have provided an update on presentation topics in anticipation of the 2021 AAG Annual Meeting. A total of 2,952 papers and posters (2,648 papers; 304 posters) are scheduled to be presented at the AAG virtual annual meeting in April this year (numbers as of March 1, 2021). To help meeting participants and fellow geographers to find out what will be presented at the meeting, we summarized the AAG 2021 presentation submissions using the keyword network analysis method. The keyword network analysis suggests a couple of watching points in the 2021 AAG conference presentations. One is the emergence of COVID-19 research as a very influential topic. It may be of great interest to many geographers to see how fellow researchers tackle the global pandemic phenomenon. The other is the integration of GIS and spatial analysis into the COVID-19 cluster. The 2021 AAG Conference is held virtually this year. Even if it is heartbreaking that we cannot meet fellow geographers face-to-face, the virtual conference will be an opportunity for us to overcome geographic mobility restrictions. We hope to see you all during the conference.
+        authors: ["Jeong Seong", "Sanghoon Ji", "Ana Stanescu", "Yubin Lee", "Chulsue Hwang"]
+        title: What will be Presented at the 2021 AAG Meeting?
+        venue: AAG Newsletter, 55 · April 2021
+        topics: [st, ml]
+
+  # ── `collapsed: true` 인 묶음은 "Other presentations" 토글 안으로 들어갑니다.
+  #    (CV 에서 뺀 발표. I1 은 제1저자 포스터) ──
+  - group: Other presentations
+    collapsed: true
+    items:
+      - year: 2024
+        key: K9
+        short: KSFS 2024 · Clustering
+        abstract_note: Presented in Korean · official English abstract
+        abstract: >-
+          To form an N-minute compact city, both sufficient and stable access to green spaces play an essential role in enhancing the quality of life for urban residents. This study aimed to categorize spaces based on green space accessibility, which varies according to the spatiotemporal changes in the floating population, through the following two steps. First, we employed an Enhanced Two-Step Floating Catchment Area (E2SFCA) method to measure the changes in the per capita green space area accessible within 15 minutes under the influence of a time-varying floating population. Second, with the help of K-Means Clustering, we categorized spaces based on temporal changes and the degree of access to green spaces. As a result, the study provided four major clusters; in detail, 13 clusters (six better daytime access clusters, four better nighttime access clusters, two continuously low access clusters, and one continuously high access cluster). This study could be a meaningful contribution to the literature as it provides a baseline to categorize spaces per green space as well as advocates the need for additional green space (e.g., rooftop gardens) in downtown areas that constantly have low green space accessibility.
+        authors: ["Jinwoo Park", "Jeon-Young Kang", "Sanghoon Ji", "Jeonghee Lee", "Kyungwon Seo"]
+        title: >-
+          Spatial Clustering of 15-Minute Green Space Accessibility Attributed to
+          Floating Population: A Case Study of Seoul
+        venue: >-
+          Korean Society of Forest Science, Summer Conference ·
+          August 2024 · Jeju, Korea
+        topics: [net, mob, gis, ml, eco]
+      - year: 2024
+        key: K8
+        short: KAFA 2024
+        abstract_src: summary
+        abstract_note: Presented in Korean · English summary of the full paper
+        abstract: >-
+          Urban green spaces contribute directly to citizens’ quality of life by meeting leisure needs and promoting health. Earlier work at the National Institute of Forest Science on forest welfare services and quality of life found that green space contributes less through its absolute area than through practical accessibility, that is, being within walking distance and open to the public. Building on it, this study diagnoses the forest welfare services that residents of Seoul can reach within 15 minutes, a living zone defined in line with urban policies such as Paris’s ville du quart d’heure. We apply the two-step floating catchment area (2SFCA) method with building-level demand points and green-space supply locations, quantifying supply by green area and vegetation level and demand by the time-specific population of each building, and use network rather than straight-line distances to capture realistic pedestrian access. The analysis identifies areas of imbalance where demand exceeds supply and vice versa, and proposes preliminary indicators for delineating forest welfare living zones. Future work will combine the analysis with privately held big data, such as mobile phone data, to examine population flows and usage behavior within specific living zones.
+        authors: ["Jeonghee Lee", "Sanghoon Ji"]
+        title: >-
+          Improving Neighborhood Forest Welfare Services for Quality of Life
+        venue: >-
+          Korean Association for Forest Administration, Winter Conference ·
+          February 2024 · Sejong, Korea
+        topics: [net, gis, eco]
+      - year: 2023
+        key: K7
+        short: KSFS 2023
+        kind_label: Poster
+        abstract_note: Presented in Korean · official English abstract
+        abstract: >-
+          The Korea Forest Service creates and operates 46 National Recreation Forests. National Recreation Forests are the most favoured forest welfare facilities (with a 60.0% intention to use) among the public and can be guided, booked, and paid for through ‘Soopnadl E’. In order to improve the satisfaction of natural recreation forests, which are used by about 4 million people every year, data spanning from 2010 to June 2023 were collected and analyzed. The data were sourced from the national newspaper reports and 1:1 inquiries through the reservation and payment system. The collected data underwent preprocessing, including (1)data integration, (2)sentence separation, (3)morpheme analysis, and (4) data refinement. After preprocessing, we visualized the top 300 nouns as a word cloud based on word frequency. Using a library that can create word clouds in Python, we saved it as an image file and analyzed the association between nouns through CONCOR analysis. As a result of the analysis, there were three types of inquiries: (1) inquiries about using facilities with in the recreation forest, (2) inquiries regarding room reservation and payment, and (3) inquiries about discounts for individuals with disabilites and fanilies with multiple children. In this regard, it was determined that it is necessary to deliver accurate information on facility usage, reduce waiting time through the flexible operation of the reservation and payment system, and maintain a system for making reservations on behalf of guardians.
+        authors: ["KyungAh Kim", "Jeonghee Lee", "Kyungwon Seo", "Sanghoon Ji"]
+        title: >-
+          Analysing National Recreation Forest Complaints Using Word Cloud Analysis
+        venue: >-
+          Korean Society of Forest Science · 2023 · Korea
+        topics: [ml, eco]
+      - year: 2022
+        key: K4
+        short: KGS 2022
+        abstract_src: summary
+        abstract_note: Presented in Korean · English summary
+        abstract: >-
+          Shared bicycles play a major role in reducing exhaust-related carbon emissions by raising the modal share of cycling, and Ddareungi (따릉이) is the Seoul Metropolitan Government’s flagship policy for low-carbon green growth. As part of the sharing economy, shared bicycles should benefit everyone on equal terms. This study aims to classify usage patterns of Seoul’s shared bicycles and to examine how they differ between areas. Weekday trip records from September 2021 are preprocessed, and the potential activity area between each origin and destination station is derived with isochrone analysis. The area and shape of these areas, ride duration and number of rides are aggregated by administrative dong, and K-means clustering by time of ride groups areas with similar characteristics into types. The clusters are mapped to compare areas by time of day, and areas where a cluster type persists across time periods are compared with areas where it does not, to explore the reasons.
+        authors: ["Taekeon Hwang", "Kangmin Kim", "Sanghoon Ji", "Hyeokjin Hong", "Seorim Cho", "Chulsue Hwang"]
+        title: >-
+          Spatiotemporal Pattern Typology and Differences in Bike-Sharing Use in Seoul
+        venue: Korean Geographical Society, Annual Conference · 2022 · Korea
+        topics: [mob, st, ml]
+      - year: 2021
+        key: K3
+        short: KGS 2021
+        abstract_src: translation
+        abstract_note: Presented in Korean · English translation
+        abstract: >-
+          The Journal of the Korean Geographical Society is the representative academic journal of Korean geography and serves as a comprehensive platform covering every field of geography in Korea. This study analyzed the core keywords of about 960 articles published in the journal between 2001 and 2020 in order to trace the course of geographical research. Using a keyword network, we examined how clusters of core keywords changed over time and, on that basis, explored the overall research trends of geography in Korea. We also compared these with the research trends of leading international geography journals published over the same period (The Professional Geographer, Applied Geography, The Geographical Journal, among others) to examine how research topics differ between the Journal of the Korean Geographical Society and the international journals. The results may help geography researchers in Korea understand research trends in the discipline and explore research topics.
+        authors: ["Taekeon Hwang", "Kangmin Kim", "Yubin Lee", "Hyunmin Kim", "Sanghoon Ji", "Chulsue Hwang"]
+        title: >-
+          Comparative Study on Research Trends of International Geographic Journals
+          and the Journal of the Korean Geographical Society, 2001–2020
+        venue: Korean Geographical Society, Annual Conference · 2021 · Korea
+        topics: [ml]
+      - year: 2020
+        key: I1
+        short: UKC 2020
+        kind_label: Poster
+        abstract_note: Extended abstract in the proceedings (p. 193) · text as printed
+        abstract: >-
+          The Montgomery County, Maryland, surrounds the busiest capital of Washington, D.C., and the traffic in the county is notorious during rush hours. With better positioning of police resources, vehicle crashes and traffic jams may be alleviated, promoting better traffic flows. The goal of this study is to compare speeding ticket locations with crash locations to get an insight about how policing affects vehicle crashes. We used the Montgomery County’s Traffic Violation data (1.7 million records from 2012 to 2020). AADT (Annual Average Daily Traffic) and GIS road vector data were obtained from the MDOT SHA (Maryland Department of Transportation State Highway Administration). A vector grid network was constructed to sample crashes and speeding violations. The cell size of the grid was set to 990 m by 990 m to be matched with the U.S. land cover dataset. The number of violation events in each grid cell was calculated using the point-in-polygon analysis with QGIS. Road density was also calculated for each cell with the number of lanes considered. Finally, spatial analyses were performed with Python and QGIS to analyze the distributions and correlations among crashes, speeding violations, and road density. Results show that speeding violation locations do not match well with crash locations. Figure 1 shows that crashes occur not only major highways, but also more frequently at artery and local roads. Figure 2 shows that speeding violations appear frequently along highways and major roads. The result implies significant police resources along major roads, while crashes are frequent at arterial and local roads. This is an ongoing research, and an estimation model be constructed with machine learning techniques.
+        authors: ["Sanghoon Ji", "Jeong Seong", "Yubin Lee", "Ana Stanescu", "Chulsue Hwang"]
+        title: Rush Hour Crashes and Speeding Analysis with Traffic Big Data
+        venue: >-
+          33rd US-Korea Conference (UKC) · December 2020 · Virtual
+        topics: [mob, st, gis]
+      - year: 2020
+        key: K1
+        short: KGS 2020
+        related: [J1]
+        abstract_src: translation
+        abstract_note: Presented in Korean · English translation
+        abstract: >-
+          As GIS, machine learning and deep learning have come into use in geographical research, the scope of geography has gradually expanded, and it has become harder for researchers to grasp overall research trends in the discipline (Gorraiz et al., 2016). Comprehensive research is therefore needed to identify what recent geography-related studies deal with. This study analyzed abstracts submitted to the AAG conference with LDA, a topic-modeling method, in order to find the topics of recent geography-related research. AAG conference papers from 2018 to 2020 were collected by web crawling, and only nouns and adjectives were retained during preprocessing. A total of eight topics were then generated: political ecology, geospatial science, urban development, geospatial visualization, land cover change, environmental health, urban community and political geography. Research of this kind is expected to contribute to understanding overall research trends in geography and to exploring research topics that have recently been attracting attention.
+        authors: ["Yubin Lee", "Youngho Lee", "Jeong Seong", "Ana Stanescu", "Sanghoon Ji", "Chulsue Hwang"]
+        title: >-
+          Topic Analysis of AAG Conference Papers 2018–2020 Using Topic Modeling
+        venue: Korean Geographical Society, Annual Conference · 2020 · Korea
+        topics: [ml]
+
+skills:
+  - group: Programming
+    items: [Python, R, SQL, "Bash (Ubuntu)"]
+  - group: GIS & Remote Sensing
+    items: [ArcGIS, QGIS, Google Earth Engine]
+  - group: 3D Geospatial
+    items: [Pix4D, Metashape, Trimble RealWorks, SketchUp, Unity, Meta Quest]
+  - group: UAV Operations
+    items: [DJI Mavic, DJI Avata, DroneLink]
+
+footer_updated: September 2026
+
+---
+<!-- ↓ 위 내용 블록에 문법 오류가 있을 때에만 화면에 나오는 안내문이다. 평소에는 보이지 않는다. 지우지 말 것. -->
+<!doctype html><meta charset="utf-8"><title>index.html 문법 오류</title>
+<div style="font:16px/1.7 'Malgun Gothic',sans-serif;max-width:760px;margin:64px auto;padding:0 24px;color:#222">
+  <h2 style="margin:0 0 12px">index.html 의 내용 블록을 읽지 못했습니다</h2>
+  <p>두 <code>---</code> 줄 사이 어딘가에 문법(YAML) 오류가 있어 페이지를 만들 수 없습니다.
+     터미널에서 아래를 실행하면 몇 번째 줄이 문제인지 알려 줍니다.</p>
+  <pre style="background:#f3f3f0;padding:12px 16px;font-size:15px">.\_tools\check.ps1</pre>
+  <p style="margin-bottom:4px">가장 흔한 원인</p>
+  <ol style="margin-top:0">
+    <li>들여쓰기가 한 칸 어긋남 — 같은 목록의 <code>- file:</code> 줄들은 정확히 같은 칸에서 시작해야 합니다.</li>
+    <li>값 안에 <code>: </code>(콜론+공백)이나 <code> #</code> 이 있는데 <code>"큰따옴표"</code> 로 감싸지 않음.</li>
+    <li>공백 대신 탭 문자를 씀, 또는 따옴표를 닫지 않음.</li>
+  </ol>
+</div>
