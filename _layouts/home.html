@@ -117,13 +117,6 @@
           <p class="hanja">{{ P.name_ko }} &middot; {{ P.name_hanja }}{% if P.name_en %} &middot; {{ P.name_en }}{% endif %}</p>
           <p class="role"><strong>{{ P.role }}</strong>, {{ P.affiliation }}<br>{{ P.degree_line }}</p>
           <p class="thesis">{{ page.thesis }}</p>
-          <div class="cta">
-            <a class="btn primary" href="#publications">Publications</a>
-            {%- if P.cv_pdf %}<a class="btn" href="{{ P.cv_pdf | relative_url }}" target="_blank" rel="noreferrer">Curriculum Vitae</a>{% endif -%}
-            <button class="btn js-copy" type="button" data-copy="{{ P.email }}">Email</button>
-            {%- if P.scholar %}<a class="btn" href="{{ P.scholar }}" target="_blank" rel="noreferrer">Google Scholar</a>{% endif -%}
-            {%- if page.stats %}<div class="cta-stats">{% for s in page.stats %}<span><b>{{ s.value }}</b> {{ s.label }}</span>{% endfor %}</div>{% endif -%}
-          </div>
         </div>
         {%- if P.photo -%}
         {%- assign photo_big = P.photo_large | default: P.photo %}
@@ -133,6 +126,13 @@
                alt="{{ P.name }}" fetchpriority="high" decoding="async">
         </button>
         {%- endif -%}
+      </div>
+      <div class="cta">
+        <button class="btn primary js-copy" type="button" data-copy="{{ P.email }}">{{ P.email }}</button>
+        <a class="btn" href="#publications">Publications</a>
+        {%- if P.cv_pdf %}<a class="btn" href="{{ P.cv_pdf | relative_url }}" target="_blank" rel="noreferrer">Curriculum Vitae</a>{% endif -%}
+        {%- if P.scholar %}<a class="btn" href="{{ P.scholar }}" target="_blank" rel="noreferrer">Google Scholar</a>{% endif -%}
+        {%- if page.stats %}<div class="cta-stats">{% for s in page.stats %}<span><b>{{ s.value }}</b> {{ s.label }}</span>{% endfor %}</div>{% endif -%}
       </div>
     </header>
 

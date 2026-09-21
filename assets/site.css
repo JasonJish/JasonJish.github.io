@@ -2,9 +2,9 @@
    whatever the visitor's system is set to, so every colour is painted here. */
 :root{
   --paper:#FBFCFA; --panel:#F2F5F1; --panel-2:#E8EEE7;
-  --ink:#161A18; --ink-2:#4E5A54; --ink-3:#64716B;   /* ink-3: 4.9:1 on paper, 4.6:1 on panel */
-  --rule:#DCE3DB; --rule-2:#C7D2C6;
-  --accent:#1E6B55; --accent-deep:#134A3A; --accent-line:#9FC7B7; --accent-soft:#E6F0EB; --focus:#0F5C48;
+  --ink:#131815; --ink-2:#48544E; --ink-3:#5F6C66;   /* ink-3: 4.9:1 on paper, 4.6:1 on panel */
+  --rule:#D9E1D9; --rule-2:#C2CEC2;
+  --accent:#164E3E; --accent-deep:#0D3328; --accent-line:#8FB5A5; --accent-soft:#E3EDE8; --focus:#0D4536;
   --f-sans:'Archivo','Noto Sans SC','Segoe UI',system-ui,-apple-system,sans-serif;
   --f-mono:'IBM Plex Mono','Noto Sans SC','SFMono-Regular',Consolas,monospace;
   --rail-w:158px; --max:1200px; --read:72ch; --fig-h:240px;
@@ -76,15 +76,16 @@ section{padding:44px 0;border-top:1px solid var(--rule)}
   -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 88%);
   mask-image:linear-gradient(to bottom,#000 0%,transparent 88%);opacity:.55;pointer-events:none}
 .hero>*{position:relative}
-.hero-top{display:flex;align-items:center;justify-content:space-between;gap:32px}
-.hero-lede .cta{margin-bottom:0;align-items:center}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:clamp(28px,4vw,56px)}
+.hero-lede .thesis{margin-bottom:0}
+.hero>.cta{margin:32px 0 0;align-items:center}   /* a row of its own, below the lede and the photo */
 .hero .btn{padding:8px 12px}
 .cta-stats{display:flex;flex-direction:column;justify-content:center;gap:1px;margin-left:4px;
   font-size:11.5px;line-height:1.35;color:var(--ink-3);white-space:nowrap}
-.cta-stats b{display:inline-block;min-width:2ch;margin-right:4px;font-family:var(--f-mono);font-size:13px;
-  font-weight:500;color:var(--accent-deep);font-variant-numeric:tabular-nums;text-align:right}
+.cta-stats b{margin-right:2px;font-family:var(--f-mono);font-size:13px;
+  font-weight:500;color:var(--accent-deep);font-variant-numeric:tabular-nums}
 .hero-lede{min-width:0;flex:1 1 auto}
-.portrait{flex:0 0 auto;width:clamp(180px,24vw,260px);margin-top:2px}
+.portrait{flex:0 0 auto;width:clamp(200px,29vw,330px);margin-top:2px}
 .portrait img{display:block;width:100%;height:auto;border-radius:50%}
 /* the photo is a button: a click opens it large in the viewer, a click on the large photo closes it */
 .portrait-btn{display:block;padding:0;border:0;background:none;border-radius:50%;cursor:zoom-in}
@@ -112,8 +113,8 @@ h1{margin:0 0 4px;font-size:clamp(38px,6.2vw,60px);font-weight:700;letter-spacin
   padding:8px 15px;border:1px solid var(--rule-2);color:var(--ink);background:var(--paper);
   transition:background .15s,border-color .15s,color .15s}
 .btn:hover{background:var(--panel);border-color:var(--ink-3);text-decoration:none}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+.btn.primary{background:var(--accent-deep);border-color:var(--accent-deep);color:#fff}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
 
 
 /* ══ boxes ══ */
@@ -166,7 +167,7 @@ h1{margin:0 0 4px;font-size:clamp(38px,6.2vw,60px);font-weight:700;letter-spacin
   color:#fff;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:11px 22px;
   font-family:var(--f-mono);font-size:12px;letter-spacing:.03em;box-shadow:0 -1px 0 rgba(0,0,0,.18)}
 .statusbar .grow{flex:1;min-width:120px}
-.statusbar b{font-weight:500;color:#BFE3D5}
+.statusbar b{font-weight:500;color:#B5DCCC}
 .statusbar button{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;
   text-transform:uppercase;background:transparent;border:1px solid rgba(255,255,255,.45);
   color:#fff;padding:6px 13px;cursor:pointer;transition:background .15s}
@@ -290,14 +291,14 @@ details.others .talkgroup{margin-bottom:0}
 /* One soft pulse: fade in, hold about two seconds, fade out. */
 @keyframes xflash{
   0%{outline-color:transparent;background-color:transparent}
-  12%,62%{outline-color:var(--accent);background-color:rgba(30,107,85,.07)}
+  12%,62%{outline-color:var(--accent);background-color:rgba(22,78,62,.07)}
   100%{outline-color:transparent;background-color:transparent}}
 .flash{outline:2px solid transparent;outline-offset:5px;animation:xflash 3.4s ease-in-out}
 /* A figure sits in a clipped scroller, so its box is drawn inside the picture instead. */
 .fig.flash{animation:none;outline:0}
 @keyframes xfade{0%{opacity:0}12%,62%{opacity:1}100%{opacity:0}}
 .fig.flash .fig-btn::after{content:"";position:absolute;inset:0;pointer-events:none;
-  border:3px solid var(--accent);background:rgba(30,107,85,.12);opacity:0;animation:xfade 3.4s ease-in-out}
+  border:3px solid var(--accent);background:rgba(22,78,62,.12);opacity:0;animation:xfade 3.4s ease-in-out}
 @media (prefers-reduced-motion:reduce){.flash{animation:none;outline-color:var(--accent-line)}
   .fig.flash .fig-btn::after{opacity:1}}
 .pubrows{display:flex;flex-direction:column}
@@ -342,10 +343,10 @@ details.others .talkgroup{margin-bottom:0}
 .fig-btn video{display:block;height:100%;width:auto;max-width:none;aspect-ratio:auto 16/9;background:#0C1210}
 .fig{position:relative}
 .vid-toggle{position:absolute;left:7px;top:calc(var(--fig-h) - 29px);width:22px;height:22px;padding:0;border:0;cursor:pointer;
-  background:rgba(19,74,58,.88);color:#fff;font-family:var(--f-mono);font-size:9px;line-height:22px;text-align:center}
+  background:rgba(13,51,40,.9);color:#fff;font-family:var(--f-mono);font-size:9px;line-height:22px;text-align:center}
 .vid-toggle:hover{background:var(--accent-deep)}
 .fig-zoom{position:absolute;right:7px;bottom:7px;width:22px;height:22px;line-height:20px;
-  text-align:center;background:rgba(19,74,58,.88);color:#fff;font-family:var(--f-mono);
+  text-align:center;background:rgba(13,51,40,.9);color:#fff;font-family:var(--f-mono);
   font-size:14px;opacity:0;transition:opacity .15s}
 .fig-btn:hover .fig-zoom,.fig-btn:focus-visible .fig-zoom{opacity:1}
 .fig figcaption{font-family:var(--f-mono);font-size:10.5px;line-height:1.45;
