@@ -34,7 +34,7 @@ thesis: >-
 # 첫 화면 버튼 옆의 실적 숫자 — 내가 주도한 것만 센다. 항목을 더하면 여기 숫자도 손으로 고친다.
 stats:
   - { value: 4,  label: First/corresponding-author articles }   # J7·J3·J2 (first author), J4 (corresponding author)
-  - { value: 10, label: Conference presentations }   # I6·I3·I2·I1, K12·K11·K8·K6·K5·K2
+  - { value: 11, label: Conference presentations }   # I8·I6·I3·I2·I1, K12·K11·K8·K6·K5·K2
 
 about:
   - >-
@@ -106,6 +106,8 @@ gallery:
   - file: J4/11_simulation.jpg
     caption: "Corridor crowding over time, 30–300 seconds"
   - file: J5/32_algorithm-and-result.png
+  - file: I8/I8.jpg
+    caption: "Presenting the poster at the AAG East Lakes Division Meeting 2026, Columbus, Ohio"
   - file: I6/I6.jpg
     caption: "Presenting at the AAG 2024 Annual Meeting, Honolulu"
   - file: K2/K2.jpg
@@ -397,6 +399,8 @@ experience:
     advisor_url: https://masonkorea.gmu.edu/people/spark230
     projects:
       - key: P15
+        short: GMUK Cropland
+        outputs: [I8]
         title: Explainable-AI-Based Analysis of Cropland Abandonment Trajectories
         period: April 2026 – present
         topics: [ml, st, rs]
@@ -815,12 +819,30 @@ talks:
   - group: Posters & Other
     items:
       - year: 2026
+        key: I8
+        short: ELDAAG 2026
+        kind_label: Poster
+        abstract: >-
+          Crop abandonment is not an end state but a transition with several pathways. Yet large-scale studies describe what abandoned land becomes with a single land-cover snapshot or assess its future against two predefined uses, recultivation or reforestation, simplifying the process. We test whether the nine factors from a global model of recultivation suitability, rebuilt with U.S. data, also distinguish post-abandonment trajectories. In Ohio, which spans the Corn Belt and the Appalachian Plateau, we tracked 30 m cropland pixels abandoned in 2001–2014 through Annual NLCD from five years before to ten years after abandonment and clustered them into three main trajectory types: Cropland Persistence, Pasture/Hay Transition, and Urban Transition. Spatial error and lag models related each type's share in 300 m grid cells to these factors. Cropland Persistence dominated the west, most strongly associated with surrounding cropland density and proximity to stable cropland. Pasture/Hay Transition dominated the east and south, and was most strongly associated with the density of nearby abandoned cropland. Treating abandonment as trajectories reveals pathways that snapshot framings might miss. In Ohio, these pathways suggest that the end of crop cultivation often marks a shift within agricultural land use rather than an exit from it.
+        authors: ["Sanghoon Ji", "Sohyun Park"]
+        title: >-
+          Where Does Abandoned Cropland Go? A Decade of Land-Cover Trajectories
+          in Ohio
+        venue: >-
+          AAG East Lakes Division, Annual Meeting · October 2026 ·
+          Columbus, Ohio, USA
+        topics: [st, ml, rs, gis]
+        figures:
+          - file: I8_poster.jpg
+            caption: "The poster: where abandoned cropland in Ohio goes within ten years, and what separates the pathways"
+          - file: I8.jpg
+            caption: "Presenting the poster at the East Lakes Division Meeting 2026, The Ohio State University"
+      - year: 2026
         key: K13
         short: KSRS 2026
         kind_label: Poster
         abstract_src: summary
-        # After the conference (October 2026) this can read "Presented in Korean · English summary".
-        abstract_note: Abstract in Korean · English summary
+        abstract_note: Presented in Korean · English summary
         abstract: >-
           Land-cover classification with satellite imagery and deep learning has mostly been confined to limited test sites, and its performance at the national scale has not been examined sufficiently. This study classified land cover across the Republic of Korea with multi-temporal Sentinel-2 imagery (April, September and November 2025) and a U-Net model. Training sites were designed to reflect both the national representativeness of each land type and the spatial dispersion and complexity of land nationwide. Inputs were monthly median composites of five bands, GLCM texture derived from them and terrain slope from a DEM; the Ministry of Environment land-cover map was reclassified into the six IPCC land-use categories, giving 3,185 training tiles of 256 × 256 pixels at 10 m resolution. Overall accuracy averaged 85.1 ± 0.8% over three training runs. Forest and wetland were classified with high accuracy, whereas small classes such as grassland and other land showed low accuracy, which spectral separability analysis (Jeffries–Matusita distance) attributed not only to small sample sizes but also to spectral overlap with adjacent classes. In future work, data from the agriculture and forestry satellite (three-day revisit, 5 m resolution) are expected to improve the separation of such classes and raise classification precision.
         authors: ["Eunseo Shin", "Sanghoon Ji", "Suyeon Kim", "Eunsook Kim", "Chan-Ryul Park", "Sol-E Choi"]
@@ -829,7 +851,7 @@ talks:
           Imagery and Deep Learning
         venue: >-
           Korean Society of Remote Sensing, Annual Conference ·
-          October 2026 · Busan, Korea · Accepted
+          October 2026 · Busan, Korea
         topics: [ml, gis, rs, eco]
       - year: 2024
         key: K12
@@ -1014,7 +1036,7 @@ skills:
   - group: UAV Operations
     items: [DJI Mavic, DJI Avata, DroneLink]
 
-footer_updated: September 2026
+footer_updated: November 2026
 
 ---
 <!-- ↓ 위 내용 블록에 문법 오류가 있을 때에만 화면에 나오는 안내문이다. 평소에는 보이지 않는다. 지우지 말 것. -->
